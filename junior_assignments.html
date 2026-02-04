@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Secondary Assignments</title>
+    <style>
+        /** {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }*/
+        body {
+                position: relative;
+                z-index: 1;
+            }
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url('img/mainlogo.jpg') no-repeat center center;
+                background-size: 300px 300px; /* adjust as needed*/ 
+                opacity: 0.1; /* watermark transparency */
+                z-index: 0;
+                pointer-events: none;
+                text-align: center 
+                padding: 0;/* allow clicks through*/
+                margin: 0;
+                padding: 0;
+                 background-color: purple;
+                align-items: center;       
+                text-align: center;
+                 box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+       
+        
+        .header {
+            background: linear-gradient(135deg, gold 0%, red 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .back-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            background-color: white;
+            color: #003366;
+        }
+        
+        .header-center {
+            text-align: center;
+        }
+        
+        .header-center h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header-center p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #003366;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background-color: #ffc107;
+            border-radius: 2px;
+        }
+        
+        .instructions {
+            background-color: #e8f4fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-left: 5px solid #004a8f;
+        }
+        
+        .instructions h3 {
+            color: #004a8f;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+            color: #444;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            border-color: #004a8f;
+        }
+        
+        .subject-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #004a8f;
+        }
+        
+        .subject-card h3 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .subject-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            border-color: #004a8f;
+            box-shadow: 0 0 0 3px rgba(0, 74, 143, 0.2);
+        }
+        
+        .access-btn {
+            background: linear-gradient(to right, #004a8f, #003366);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .access-btn:hover {
+            background: linear-gradient(to right, #003366, #002b5c);
+            transform: scale(1.02);
+        }
+        
+        .password-status {
+            margin-top: 10px;
+            font-size: 14px;
+            min-height: 20px;
+        }
+        
+        .password-correct {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .password-incorrect {
+            color: #dc3545;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #003366;
+            color: white;
+            margin-top: 50px;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .subject-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <div class="header-center">
+            <h1>Junior Secondary Assignments</h1>
+            <p>JSS 1 - JSS 3 | Second Term 2025/2026</p>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    
+    <div class="main-content">
+        <h2 class="page-title">Select Subject to Access Assignment</h2>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Select the subject you want to access assignment for</li>
+                <li>Enter the password provided by your teacher for that subject</li>
+                <li>Click "Access Assignment" to view and download your assignment</li>
+                <li>Each subject has a unique password - contact your teacher if you don't have it</li>
+                <li>Complete assignments before the due date</li>
+            </ul>
+        </div>
+        
+        <div class="subject-grid" id="subjectGrid">
+            <!-- Subject cards will be generated by JavaScript -->
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>&copy; 2026 Wisdom Foundation School, Egbewa, Ado Ekiti</p>
+        <p>Education with Distinction | Gateway to the University</p>
+        <p>Junior Secondary Assignment Portal</p>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        window.onload = function() {
+            const loggedIn = sessionStorage.getItem('loggedIn');
+            if (loggedIn !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Load subjects and passwords
+            loadJuniorSubjects();
+        };
+        
+        // Junior secondary subjects with passwords
+        const juniorSubjects = [
+            {
+                id: 'mathematics',
+                name: 'Mathematics',
+                description: 'Algebra, Geometry, and Arithmetic assignments',
+                icon: '➗',
+                password: 'jssmath123',
+                assignmentPage: 'mathematics_assignment.html'
+            },
+            {
+                id: 'english',
+                name: 'English Language',
+                description: 'Grammar, Comprehension, and Composition assignments',
+                icon: '📖',
+                password: 'jsseng456',
+                assignmentPage: 'english_assignment.html'
+            },
+            {
+                id: 'science',
+                name: 'Basic Science',
+                description: 'Physics, Chemistry, and Biology fundamentals',
+                icon: '🔬',
+                password: 'jsssci789',
+                assignmentPage: 'science_assignment.html'
+            },
+            {
+                id: 'computer',
+                name: 'Computer Studies',
+                description: 'Digital technology and computer basics',
+                icon: '💻',
+                password: 'jsstech101',
+                assignmentPage: 'computer_assignment.html'
+            },
+            {
+                id: 'social',
+                name: 'Social Studies',
+                description: 'Civic education and social sciences',
+                icon: '🌍',
+                password: 'jsssoc202',
+                assignmentPage: 'social_assignment.html'
+            },
+            {
+                id: 'yoruba',
+                name: 'Yoruba Language',
+                description: 'Yoruba grammar and literature',
+                icon: '🇳🇬',
+                password: 'jssyor303',
+                assignmentPage: 'yoruba_assignment.html'
+            },
+            {
+                id: 'phe',
+                name: 'Physical & Health Education',
+                description: 'Sports and health education',
+                icon: '⚽',
+                password: 'jssphe404',
+                assignmentPage: 'phe_assignment.html'
+            },
+            {
+                id: 'crs',
+                name: 'Christian Religious Studies',
+                description: 'Bible studies and moral education',
+                icon: '✝️',
+                password: 'jsscrs505',
+                assignmentPage: 'crs_assignment.html'
+            }
+        ];
+        
+        function loadJuniorSubjects() {
+            const subjectGrid = document.getElementById('subjectGrid');
+            subjectGrid.innerHTML = '';
+            
+            juniorSubjects.forEach(subject => {
+                const card = document.createElement('div');
+                card.className = 'subject-card';
+                card.id = `card-${subject.id}`;
+                
+                card.innerHTML = `
+                    <div class="subject-icon">${subject.icon}</div>
+                    <h3>${subject.name}</h3>
+                    <p>${subject.description}</p>
+                    <input type="password" 
+                           class="password-input" 
+                           id="password-${subject.id}"
+                           placeholder="Enter subject password"
+                           maxlength="12">
+                    <div class="password-status" id="status-${subject.id}"></div>
+                    <button class="access-btn" onclick="accessAssignment('${subject.id}')">
+                        Access Assignment
+                    </button>
+                `;
+                
+                subjectGrid.appendChild(card);
+            });
+        }
+        
+        function accessAssignment(subjectId) {
+            const subject = juniorSubjects.find(s => s.id === subjectId);
+            const passwordInput = document.getElementById(`password-${subjectId}`);
+            const statusElement = document.getElementById(`status-${subjectId}`);
+            const enteredPassword = passwordInput.value.trim();
+            
+            if (!enteredPassword) {
+                statusElement.textContent = 'Please enter a password';
+                statusElement.className = 'password-status password-incorrect';
+                return;
+            }
+            
+            if (enteredPassword === subject.password) {
+                statusElement.textContent = '✓ Password correct! Redirecting...';
+                statusElement.className = 'password-status password-correct';
+                
+                // Store assignment info in sessionStorage
+                sessionStorage.setItem('currentSubject', subject.name);
+                sessionStorage.setItem('currentSubjectId', subject.id);
+                
+                // Redirect to assignment page after short delay
+                setTimeout(() => {
+                    window.location.href = subject.assignmentPage;
+                }, 1000);
+            } else {
+                statusElement.textContent = '✗ Incorrect password. Try again.';
+                statusElement.className = 'password-status password-incorrect';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+        
+        function goBack() {
+            window.location.href = 'dashboard.html';
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.clear();
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Allow Enter key to submit password
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const activeElement = document.activeElement;
+                if (activeElement && activeElement.className === 'password-input') {
+                    const subjectId = activeElement.id.replace('password-', '');
+                    accessAssignment(subjectId);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
