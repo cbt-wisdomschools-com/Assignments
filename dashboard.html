@@ -1,23 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wisdom Foundation School - Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="fav_icon2.ico">
+    <title>www.wisdomfoundationschools.org</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-       /* * {
+        /* {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
+            /*background: url('img/mainlogojpg') no-repeat center center;
+            //content: "";*/
+               
+                            
         }*/
-
-
            body {
                 position: relative;
                 z-index: 1;
@@ -45,338 +45,423 @@
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
        
-        
-        .header {
-            background: linear-gradient(135deg, gold 0%, #004a8f 100%);
-            color: white;
+       
+        :root {
+            --primary-color: #008000;
+            --secondary-color: #d90000;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --card-bg: white;
+            --header-bg: blue;/*#008000;*/
+            --header-text: white;
+            --nav-bg: #006400;
+            --input-border: #ddd;
+        }
+       
+        .dark-theme {
+            --primary-color: #4CAF50;
+            --secondary-color: #ff5252;
+            --background-color: #2c2c2c;
+            --text-color: #f0f0f0;
+            --card-bg: #3c3c3c;
+            --header-bg: #2e7d32;
+            --header-text: #f0f0f0;
+            --nav-bg: #1b5e20;
+            --input-border: #555;
+        }
+       
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+       
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+          #student-image {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+       
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(gold, orange, fuchsia);
+            padding: 15px 0;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+       
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 0 20px;
         }
-        
-        .school-info {
+       
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 20px;
+            list-style: none;
         }
-        
+       
+        .nav-links li {
+            margin-right: 20px;
+        }
+       
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+       
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+       
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 15px;
+        }
+       
+        header {
+            background: linear-gradient(gold, orange, fuchsia);
+            color: var(--header-text);
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+       
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+       
         .logo {
             width: 80px;
             height: 80px;
             background-color: white;
             border-radius: 50%;
-            padding: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border: 2px solid var(--secondary-color);
         }
-        
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .school-text h1 {
-            font-size: 24px;
+       
+        h1 {
+            font-size: 28px;
             margin-bottom: 5px;
         }
-        
-        .school-text p {
-            font-size: 14px;
-            opacity: 0.9;
+       
+        .welcome-message {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-left: 5px solid var(--secondary-color);
+            margin: 20px 0;
+            font-size: 16px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
-        .student-profile {
+       
+        .exam-sections {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
+            gap: 25px;
+            margin-bottom: 25px;
         }
-        
-        .student-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 3px solid #ffc107;
-            object-fit: cover;
+       
+        .exam-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            overflow: hidden;
         }
-        
-        .student-info h3 {
+       
+        .section-header {
+            background: linear-gradient(gold, orange, fuchsia);
+            color: var(--header-text);
+            padding: 15px 20px;
             font-size: 18px;
-            margin-bottom: 3px;
+            font-weight: bold;
         }
-        
-        .student-info p {
-            font-size: 14px;
-            opacity: 0.9;
+       
+        .section-body {
+            padding: 25px;
         }
-        
-        .logout-btn {
-            background-color: #dc3545;
+       
+        .instructions {
+            margin-bottom: 20px;
+            /*color: var(--text-color);*/
+             color: red;
+        }
+       
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+       
+        input[type="password"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 15px;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+       
+        .btn {
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s;
         }
-        
-        .logout-btn:hover {
-            background-color: #c82333;
+       
+        .btn:hover {
+            background-color: var(--nav-bg);
         }
-        
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .welcome-section {
+       
+        .windows-activate {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-        
-        .welcome-section h2 {
-            color: #004a8f;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .welcome-section p {
-            font-size: 18px;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .class-section {
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
-            font-size: 28px;
-            color: #003366;
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background-color: #ffc107;
-            border-radius: 2px;
-        }
-        
-        .class-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .class-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .class-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border-color: #004a8f;
-        }
-        
-        .class-icon {
-            font-size: 60px;
-            color: #004a8f;
-            margin-bottom: 20px;
-        }
-        
-        .class-card h3 {
-            font-size: 24px;
-            color: #003366;
-            margin-bottom: 15px;
-        }
-        
-        .class-card p {
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-        
-        .class-btn {
-            background: linear-gradient(to right, #004a8f, #003366);
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-        
-        .class-btn:hover {
-            background: linear-gradient(to right, #003366, #002b5c);
-            transform: scale(1.05);
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #003366;
-            color: white;
-            margin-top: 50px;
-        }
-        
-        .footer p {
-            margin-bottom: 10px;
+            margin-top: 30px;
+            color: var(--text-color);
             font-size: 14px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
-        .motto-footer {
-            color: #ffc107;
-            font-style: italic;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
+       
+        @media (max-width: 900px) {
+            .exam-sections {
                 flex-direction: column;
-                gap: 20px;
+            }
+           
+            .nav-container {
+                flex-direction: column;
+            }
+           
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+           
+            .nav-links li {
+                margin-bottom: 10px;
+            }
+        }
+       
+        @media (max-width: 600px) {
+            .logo-container {
+                flex-direction: column;
                 text-align: center;
             }
-            
-            .school-info {
-                flex-direction: column;
-                text-align: center;
+           
+            .logo {
+                margin-right: 0;
+                margin-bottom: 10px;
             }
-            
-            .welcome-section h2 {
-                font-size: 26px;
-            }
-            
-            .class-cards {
-                grid-template-columns: 1fr;
+           
+            input[type="password"] {
+                width: 90%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="school-info">
-            <div class="logo">
-                <img src="img/wisdom_logo1.png" alt="School Logo">
-            </div>
-            <div class="school-text">
-                <h1>WISDOM FOUNDATION SCHOOL</h1>
-                <p>Education with Distinction | Gateway to the University</p>
-            </div>
-        </div>
-        
-        <div class="student-profile">
-            <img id="studentImage" src="img/default_user.jpg" alt="Student" class="student-img">
-            <div class="student-info">
-                <h3 id="studentName">Student Name</h3>
-                <p id="studentClass">Class: Loading...</p>
-            </div>
-        </div>
-        
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-    
-    <div class="main-content">
-        <div class="welcome-section">
-            <h2>Welcome to Student Portal</h2>
-            <p>Access your assignments, exam results, and learning materials. Select your class level below to continue.</p>
-        </div>
-        
-        <div class="class-section">
-            <h2 class="section-title">Select Your Class Level</h2>
-            <div class="class-cards">
-                <div class="class-card">
-                    <div class="class-icon">📚</div>
-                    <h3>Junior Secondary</h3>
-                    <p>Access assignments and materials for JSS 1, JSS 2, and JSS 3 students. Junior secondary curriculum includes foundational subjects and preparatory courses.</p>
-                    <button class="class-btn" onclick="goToJuniorAssignments()">Go to Junior Assignments</button>
-                </div>
-                
-                <div class="class-card">
-                    <div class="class-icon">🎓</div>
-                    <h3>Senior Secondary</h3>
-                    <p>Access assignments and materials for SSS 1, SSS 2, and SSS 3 students. Senior secondary includes specialized tracks in Sciences, Arts, and Commercial studies.</p>
-                    <button class="class-btn" onclick="goToSeniorAssignments()">Go to Senior Assignments</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 Wisdom Foundation School, Egbewa, Ado Ekiti</p>
-        <p class="motto-footer">Education with Distinction | Gateway to the University</p>
-        <p>Second Term 2025/2026 Academic Session</p>
-    </div>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="https://WISDOM FOUNDATION-model-schools.github.io/home/"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="https://WISDOM FOUNDATION-model-schools.github.io/home/"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="https://WISDOM FOUNDATION-model-schools.github.io/home/"><i class="fas fa-question-circle"></i> Help</a></li>
+                <li><a href="Exam_Reset_Validation.html"><i class="fas fa-cogs"></i>Reset </a></li>
+                <li><a href="https://WISDOM FOUNDATION-model-schools.github.io/home/"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="https://WISDOM FOUNDATION-model-schools.github.io/home/"><i class="fas fa-cogs"></i> Services</a></li>
+                  <li><a href="Show_records.html"><i class="fas fa-cogs"></i>Records</a></li>
+                <li><a href="index.html"><i class="fas fa-cogs"></i> Sign Out</a></li>
 
-    <script>
-        // Check if user is logged in
-        window.onload = function() {
-            const loggedIn = sessionStorage.getItem('loggedIn');
-            const username = sessionStorage.getItem('username');
-            const userImage = sessionStorage.getItem('image');
-            const userClass = sessionStorage.getItem('userClass');
+                
+                 
+            </ul>
+            <div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon">☀️</i>
+                </button>
+            </div>
+        </div>
+    </nav>
+   
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <!--<div class="logo"><img id="student-image" src="img/mainlogojpg" alt="Profile Picture"></div>-->
+                <div><img src="img/wisdom_logo1.jpg" alt="Profile Picture"></div>
+               
+            </div>
+            <p>2025/2026 SECOND TERM HOLIDAY ASSIGNMENTS PORTAL</p>
+        </header>
+       
+    
+
+             <div class="welcome-message">
+            <div id="student-info">
+            <!--<img id="student-image" src="uploads/<?php echo $image; ?>" alt="Profile Picture">-->
+            <img id="userImage" style="width:120px; height:120px; border-radius:50%; border:3px solid #008000; display:block; margin:0 auto;"><br><br>
             
-            if (loggedIn !== 'true' || !username) {
-                window.location.href = 'login.html';
-                return;
+        </div >
+            <!--<h2 style="  align-items: center; text-align: center;">Welcome, <?php echo $username; ?>.</h2>-->
+            <h2 style="  align-items: center; text-align: center;" >Welcome, <span id="user"></span></h2>
+             <h1 id="welcomeMessage">Welcome, User!</h1>
+  
+        </div>
+
+             <div class="exam-sections">
+            <div class="exam-section">
+                <div class="section-header">WISDOM FOUNDATION MODEL JUNIOR SECONDARY</div>
+                <div class="section-body">
+                <p class="instructions"><span style="visibility: hidden; color: red;">----------------------------------------</span>JUNIOR CATEGORY </p>
+                   
+                 <div class="input-group">
+                        
+                       <input type="password" id="input1" placeholder="Junior">
+                        <button onclick="checkInput1()" class="btn">Enter</button>
+                    </div>
+                </div>
+            </div>
+
+              <div class="exam-section">
+                <div class="section-header">WISDOM FOUNDATION MODEL SENIOR SECONDARY □</div>
+                <div class="section-body">
+                    <p class="instructions"  color: red;><span style="visibility: hidden;">--------------------------------------</span>SENIOR CATEGORY </p>
+                   
+                    <div class="input-group">
+                           <input type="password" id="input2" placeholder="Senior">
+                            <button onclick="checkInput2()"class="btn">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="windows-activate">
+           <p>&copy; www.wisfoundationschools.org. All rights reserved.</p>
+          
+        </div>
+    </div>
+           
+
+
+
+
+
+
+<br>
+
+<script>
+document.getElementById('user').innerText = sessionStorage.getItem('username');
+document.getElementById('userImage').src = sessionStorage.getItem('image');
+
+function checkInput1() {
+    if(document.getElementById('input1').value === 'junior') {
+        sessionStorage.setItem('userType', 'junior');
+        window.location.href = 'index_juniors.html';
+    } else {
+        alert('Incorrect input for Junior');
+    }
+}
+
+function checkInput2() {
+    if(document.getElementById('input2').value === 'senior') {
+        sessionStorage.setItem('userType', 'senior');
+        window.location.href = 'index_seniors.html';
+    } else {
+        alert('Incorrect input for Senior');
+    }
+}
+
+
+   // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+       
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+           
+            if (document.body.classList.contains('dark-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             }
-            
-            // Display user info
-            document.getElementById('studentName').textContent = username;
-            document.getElementById('studentClass').textContent = `Class: ${userClass || 'Not Specified'}`;
-            
-            // Set user image
-            const studentImg = document.getElementById('studentImage');
-            if (userImage) {
-                studentImg.src = `img/${userImage}`;
-                studentImg.onerror = function() {
-                    this.src = 'img/default_user.jpg';
-                };
-            }
-        };
-        
-        function goToJuniorAssignments() {
-            window.location.href = 'junior_assignments.html';
+        });
+       
+        // Simple animation for buttons
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-2px)';
+                button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            });
+           
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+                button.style.boxShadow = 'none';
+            });
+        });
+
+         const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+       
+        if (!loggedInUser) {
+            // Redirect to login page if not logged in
+            window.location.href = 'login.html';
+        } else {
+            // Display user information
+            document.getElementById('welcomeMessage').textContent = `Welcome, ${loggedInUser.username}!`;
+           
+            // Set user image (assuming images are stored in an IMG folder)
+            document.getElementById('userImage').src = `IMG/${loggedInUser.image}`;
         }
-        
-        function goToSeniorAssignments() {
-            window.location.href = 'senior_assignments.html';
-        }
-        
+       
         function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                sessionStorage.clear();
-                window.location.href = 'login.html';
-            }
+            // Clear session storage and redirect to login page
+            sessionStorage.removeItem('loggedInUser');
+            window.location.href = 'logins.html';
         }
     </script>
+
 </body>
 </html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Assignment</title>
+    <link rel="icon" type="image/x-icon" href="fav_icon2.ico">
+    <style>
+        /* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }*/
+         body {
+            position: relative;
+            z-index: 1;
+        }
+       
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/Ctemplogo.jpg') no-repeat center center;
+            background-size: 300px 300px;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+            background-color: white;
+            align-items: center;
+            text-align: center;
+        }
+       
+        
+        .header {
+            background: linear-gradient(blue, aqua 0%, fuchsia 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .back-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            background-color: white;
+            color: #003366;
+        }
+        
+        .header-center {
+            text-align: center;
+        }
+        
+        .header-center h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header-center p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .assignment-header {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-left: 5px solid #004a8f;
+        }
+        
+        .subject-icon {
+            font-size: 60px;
+            color: #004a8f;
+            margin-bottom: 15px;
+        }
+        
+        .assignment-header h2 {
+            color: #003366;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .assignment-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .detail-item {
+            background-color: #e8f4fc;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .assignment-content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+        
+        .assignment-content h3 {
+            color: #004a8f;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .assignment-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .questions {
+            margin: 25px 0;
+        }
+        
+        .question-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #004a8f;
+        }
+        
+        .question-item strong {
+            color: #003366;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background-color: #e8f4fc;
+            border-radius: 15px;
+        }
+        
+        .download-btn {
+           background: linear-gradient(blue, aqua 0%, fuchsia 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(to right, #218838, #1e7e34);
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(blue, aqua 0%, fuchsia 100%);
+            color: white;
+            margin-top: 50px;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .assignment-header h2 {
+                font-size: 26px;
+            }
+            
+            .assignment-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+         <div>
+      <img src="img/Ctemplogo.png" style="margin-bottom:15px; width: 400px; height: 120px" />
+    </div>
+        <button class="back-btn" onclick="goBack()">← Back to Subjects</button>
+        <div class="header-center">
+            <h1>Mathematics Assignment</h1>
+                <!--<img id="student-image" src="uploads/<?php echo $image; ?>" alt="Profile Picture">-->
+            <img id="userImage" style="width:120px; height:120px; border-radius:50%; border:3px solid #008000; display:block; margin:0 auto;"><br><br>
+            <p>Junior Secondary | Second Term 2025/2026</p>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="assignment-header">
+            <!--<div class="subject-icon">➗</div>-->
+            <h2 id="subjectTitle">Mathematics Assignment</h2>
+            <div class="assignment-details">
+                <div class="detail-item">Class: Junior Secondary</div>
+                <div class="detail-item">Due Date: April 15, 2026</div>
+                <div class="detail-item">Total Marks: 50</div>
+            </div>
+        </div>
+        
+        <div class="assignment-content">
+            <h3>Assignment Instructions</h3>
+            <p>Complete all questions below. Show all your working clearly. </p>
+            <p>Use foolscap sheets or an A4 exercise book. Write your name, class, and  number on the front page.</p>
+            
+            <div class="questions">
+                <h3>Questions</h3>
+                
+                <div class="question-item">
+                    <strong>Question 1 (10 marks):</strong> Simplify the following algebraic expressions:
+                    <p>a) 3x + 5y - 2x + 3y</p>
+                    <p>b) 2(3a - 4b) + 5(a + 2b)</p>
+                    <p>c) (x² + 3x - 4) + (2x² - 5x + 6)</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>Question 2 (15 marks):</strong> Solve the following equations:
+                    <p>a) 2x + 7 = 15</p>
+                    <p>b) 3(y - 4) = 2y + 5</p>
+                    <p>c) (2z/3) - 5 = 1</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>Question 3 (10 marks):</strong> Geometry
+                    <p>Calculate the perimeter and area of a rectangle with length 12cm and width 8cm.</p>
+                    <p>Calculate the area of a triangle with base 10cm and height 6cm.</p>
+                </div>
+                
+                <div class="question-item">
+                    <strong>Question 4 (15 marks):</strong> Word Problems
+                    <p>a) If 5 books cost ₦1,250, how much would 8 books cost?</p>
+                    <p>b) A father is three times as old as his son. If the sum of their ages is 60 years, find their ages.</p>
+                    <p>c) Share ₦4,500 in the ratio 2:3:4 between three people.</p>
+                </div>
+            </div>
+            
+            <h3>Marking Scheme</h3>
+            <p>1 mark will be awarded for each correct step in the working. Final answers without working will receive half marks only.</p>
+        </div>
+        
+        <div class="download-section">
+            <h3>Download Assignment</h3>
+            <p>Click the button below to download a printable version of this assignment.</p>
+            <button class="download-btn" onclick="downloadAssignment()">📥 Download Assignment PDF</button>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">File size: 2.1 MB | Format: PDF</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>&copy; 2026 Canaanland model School, Ekute, Ado Ekiti</p>
+        <p>God is our strength</p>
+        <p>...</p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Check if user came from password protected page
+            const currentSubject = sessionStorage.getItem('currentSubject');
+            if (currentSubject) {
+                document.getElementById('subjectTitle').textContent = currentSubject + ' Assignment';
+            }
+        };
+        
+        function goBack() {
+            window.history.back();
+        }
+        
+        function downloadAssignment() {
+            alert('Assignment download started. If download doesn\'t begin, check your browser settings.');
+            // In a real implementation, this would link to an actual PDF file
+            // window.open('assignments/mathematics.pdf', '_blank');
+        }
+        //document.getElementById('user').innerText = sessionStorage.getItem('username');
+        document.getElementById('userImage').src = sessionStorage.getItem('image');
+        
+        // Auto-save when leaving page
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.setItem('assignmentLastViewed', new Date().toISOString());
+        });
+    </script>
+</body>
+</html>
