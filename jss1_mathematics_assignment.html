@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSS1 Mathematics Assignment | Wisdom Foundation Schools</title>
+    <title>JSS1 MATHEMATICS Assignment | Wisdom Foundation Schools</title>
     <style>
         
           body {
@@ -220,9 +220,43 @@
         }
        
     </style>
+</head>
+<body>
+    <div class="container">
+         <div class="logo-container">
+                    <img src="img/wisdom_logo1.png" alt="School Logo">
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="header">
+            <h1>JSS1 Mathematics Assignment</h1>
+           
+        </div>
+
+        <div class="instructions">
+            <h3>📘 Instructions</h3>
+            <ul>
+                <li>Answer all questions in your Physics notebook.</li>
+                <li>Each question carries <strong>10 marks</strong> unless stated otherwise.</li>
+                <li>Show all workings clearly; marks are awarded for method as well as final answer.</li>
+                <li>Diagrams where necessary should be neatly drawn and labelled.</li>
+                <li>Submit your assignment on or before the deadline given by your teacher.</li>
+            </ul>
+        </div>
+
+        <div id="questions-container"></div>
+        <div><button class="buttns" onclick="logout()">Back To Dashboard</button></div>
+
+        <div class="footer">
+            <p>&copy; Wisdom Foundation Schools – Mathematics Department</p>
+            <p style="margin-top: 8px;">"Excellence is not an act, but a habit."</p>
+
+        </div>
+
+    </div>
 
     <script>
         const staticTheoryQuestions = [
+        
             {
       "id": 1,
       
@@ -356,6 +390,15 @@
             card.appendChild(answerArea);
             container.appendChild(card);
         });
+
+          function logout() {
+            const confirmLogout = confirm("Are you sure you want to logout.");
+            if (confirmLogout) {
+                window.location.href = "index.html";
+            }
+        }
+
+        
     </script>
 </body>
 </html>
