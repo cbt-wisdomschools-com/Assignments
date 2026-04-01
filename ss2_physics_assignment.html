@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS2 Physics Assignment | Wisdom Foundation Schools</title>
+    <style>
+        
+          body {
+            position: relative;
+            z-index: 1;
+        }
+       
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/wisdom_logo1.png') no-repeat center center;
+            background-size: 300px 300px;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+            background-color: white;
+            align-items: center;
+            text-align: center;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(gold, orange, fuchsia);/*background: linear-gradient(135deg, #008000, #006400);*/
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Instructions */
+        .instructions {
+            background: #fff8e7;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .instructions h3 {
+            color: #ff9800;
+            margin-bottom: 12px;
+        }
+
+        .instructions ul {
+            margin-left: 25px;
+            line-height: 1.6;
+        }
+
+        /* Question cards */
+        .question-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            font-size: 20px;
+            font-weight: bold;
+            background: #008000;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .question-marks {
+            font-size: 16px;
+            font-weight: 600;
+            background: #f0f0f0;
+            padding: 6px 14px;
+            border-radius: 30px;
+            color: #2c3e50;
+        }
+
+        .question-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #2c3e50;
+            white-space: pre-line;
+        }
+
+        /* Answer area (optional, for students to write) */
+        .answer-area {
+            margin-top: 20px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .answer-area label {
+            font-weight: 600;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .answer-area textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            background: white;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 12px;
+            }
+            .question-card {
+                padding: 18px;
+            }
+            .question-number {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+        }
+          .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+       
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border: 2px solid var(--secondary-color);
+        }
+         .logout-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttns {
+            position: absolute;
+            centre: 20px;
+            justify-content: center;
+            background-color: red;
+            color: lime;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+         <div class="logo-container">
+                    <img src="img/wisdom_logo1.png" alt="School Logo">
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+        <div class="header">
+            <h1>SS2 Physics Assignment</h1>
+            <p>Uniformly Accelerated Motion | Projectiles | Newton’s Laws | Machines | Heat</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📘 Instructions</h3>
+            <ul>
+                <li>Answer all questions in your Physics notebook.</li>
+                <li>Each question carries <strong>10 marks</strong> unless stated otherwise.</li>
+                <li>Show all workings clearly; marks are awarded for method as well as final answer.</li>
+                <li>Diagrams where necessary should be neatly drawn and labelled.</li>
+                <li>Submit your assignment on or before the deadline given by your teacher.</li>
+            </ul>
+        </div>
+
+        <div id="questions-container"></div>
+        <div><button class="buttns" onclick="logout()">Back To Dashboard</button></div>
+
+        <div class="footer">
+            <p>&copy; Wisdom Foundation Schools – Physics Department</p>
+            <p style="margin-top: 8px;">"Excellence is not an act, but a habit."</p>
+
+        </div>
+
+    </div>
+
+    <script>
+        const staticTheoryQuestions = [
+            {
+                "id": 1,
+                "question": "a. State the three equations of uniformly accelerated motion.\nb. A car starts from rest and accelerates uniformly at 2.5 m/s² for 8 seconds. Calculate:\n   (i) its final velocity\n   (ii) the distance covered in the 8 seconds.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 2,
+                "question": "A body moving with an initial velocity of 15 m/s is brought to rest in 10 seconds by a constant retarding force.\na. Calculate the retardation of the body.\nb. How far does the body travel before coming to rest?\nc. Sketch a velocity-time graph for the motion and use it to find the distance travelled.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 3,
+                "question": "a. Derive the second equation of motion (s = ut + ½at²) using the velocity-time graph.\nb. A stone is thrown vertically upwards with an initial velocity of 30 m/s. Calculate the maximum height reached and the total time taken to return to the point of projection. (Take g = 10 m/s²)",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 4,
+                "question": "a. What is a projectile? Give two examples of projectile motion.\nb. A ball is projected horizontally from the top of a cliff 45 m high with a speed of 20 m/s. Calculate:\n   (i) the time taken to reach the ground\n   (ii) the horizontal distance from the foot of the cliff where the ball lands. (g = 10 m/s²)",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 5,
+                "question": "a. With the aid of a diagram, show the horizontal and vertical components of velocity of a projectile launched at an angle θ to the horizontal.\nb. A stone is projected with a velocity of 50 m/s at an angle of 30° to the horizontal. Calculate:\n   (i) the time of flight\n   (ii) the maximum height reached\n   (iii) the range of the projectile. (Take g = 10 m/s²)",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 6,
+                "question": "Explain why the horizontal component of velocity of a projectile remains constant while the vertical component changes. Derive the expression for the range of a projectile on a horizontal plane.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 7,
+                "question": "a. State Newton’s three laws of motion.\nb. A force of 20 N acts on a body of mass 4 kg for 5 seconds. Calculate:\n   (i) the acceleration produced\n   (ii) the change in momentum of the body.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 8,
+                "question": "a. State Newton’s second law of motion in terms of momentum.\nb. A 10 kg body moving at 5 m/s collides with a stationary body of mass 4 kg. If they move together after collision, calculate their common velocity.\nc. Explain the principle of conservation of linear momentum and state one condition under which it holds.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 9,
+                "question": "a. Define inertia and impulse.\nb. A bullet of mass 20 g is fired from a gun of mass 5 kg with a velocity of 300 m/s. Calculate the recoil velocity of the gun.\nc. Why is it advisable to hold a gun firmly against the shoulder when firing?",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 10,
+                "question": "a. Define the following terms as applied to machines:\n   (i) Mechanical Advantage (MA)\n   (ii) Velocity Ratio (VR)\n   (iii) Efficiency\nb. Explain why the efficiency of a machine is always less than 100%.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 11,
+                "question": "a. What is a simple machine? Give four examples of simple machines.\nb. A machine with a velocity ratio of 5 requires an effort of 250 N to raise a load of 1000 N. Calculate:\n   (i) its mechanical advantage\n   (ii) its efficiency.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 12,
+                "question": "a. With the aid of a labelled diagram, describe the working of a block and tackle pulley system having 4 pulleys.\nb. If the velocity ratio of the system is 4, and an effort of 300 N is required to raise a load of 900 N, calculate the efficiency of the system.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 13,
+                "question": "a. Define:\n   (i) Heat capacity\n   (ii) Specific heat capacity\n   (iii) Latent heat of fusion\nb. 500 g of water at 80°C is mixed with 200 g of water at 20°C in a calorimeter of negligible heat capacity. Calculate the final steady temperature of the mixture. (Specific heat capacity of water = 4200 J/kg K)",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 14,
+                "question": "a. Describe an experiment to determine the specific latent heat of fusion of ice using the method of mixtures.\nb. In such an experiment, 0.05 kg of ice at 0°C is added to 0.3 kg of water at 25°C in a calorimeter. The final temperature of the mixture is 10°C. Calculate the specific latent heat of fusion of ice. (Specific heat capacity of water = 4200 J/kg K). Neglect heat losses and heat capacity of calorimeter.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 15,
+                "question": "a. Distinguish between sensible heat and latent heat.\nb. 2 kg of a substance requires 8400 J of heat to raise its temperature from 20°C to 30°C. Calculate its specific heat capacity.\nc. Calculate the quantity of heat required to convert 1.5 kg of ice at 0°C completely to water at 0°C. (Specific latent heat of fusion of ice = 336 kJ/kg)",
+                "marks": 10,
+                "image": null
+            }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        staticTheoryQuestions.forEach(q => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            // Header with number and marks
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'question-header';
+
+            const numberSpan = document.createElement('span');
+            numberSpan.className = 'question-number';
+            numberSpan.textContent = q.id;
+
+            const marksSpan = document.createElement('span');
+            marksSpan.className = 'question-marks';
+            marksSpan.textContent = `${q.marks} Marks`;
+
+            headerDiv.appendChild(numberSpan);
+            headerDiv.appendChild(marksSpan);
+
+            // Question text (preserve line breaks)
+            const questionTextDiv = document.createElement('div');
+            questionTextDiv.className = 'question-text';
+            // Replace newlines with <br> tags for proper display
+            const formattedText = q.question.replace(/\n/g, '<br>');
+            questionTextDiv.innerHTML = formattedText;
+
+            // Optional answer area (students can type directly, but not required)
+            const answerArea = document.createElement('div');
+            answerArea.className = 'answer-area';
+            answerArea.innerHTML = `
+                <label>📝 Your Answer (optional – use this space to draft):</label>
+                <textarea rows="4" placeholder="Write your answer here..."></textarea>
+            `;
+
+            card.appendChild(headerDiv);
+            card.appendChild(questionTextDiv);
+            card.appendChild(answerArea);
+            container.appendChild(card);
+        });
+
+          function logout() {
+            const confirmLogout = confirm("Are you sure you want to logout.");
+            if (confirmLogout) {
+                window.location.href = "index.html";
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

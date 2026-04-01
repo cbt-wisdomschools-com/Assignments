@@ -3,21 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathematics Assignment</title>
-    <link rel="icon" type="image/x-icon" href="fav_icon2.ico">
+    <title>JSS1 Mathematics Assignment | Wisdom Foundation Schools</title>
     <style>
-        /* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
         
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-        }*/
-         body {
+          body {
             position: relative;
             z-index: 1;
         }
@@ -29,7 +18,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('img/Ctemplogo.jpg') no-repeat center center;
+            background: url('img/wisdom_logo1.png') no-repeat center center;
             background-size: 300px 300px;
             opacity: 0.1;
             z-index: 0;
@@ -37,296 +26,335 @@
             background-color: white;
             align-items: center;
             text-align: center;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-       
-        
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header */
         .header {
-            background: linear-gradient(blue, aqua 0%, fuchsia 100%);
+            background: linear-gradient(gold, orange, fuchsia);/*background: linear-gradient(135deg, #008000, #006400);*/
             color: white;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .back-btn {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .back-btn:hover {
-            background-color: white;
-            color: #003366;
-        }
-        
-        .header-center {
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        
-        .header-center h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
         }
-        
-        .header-center p {
-            font-size: 14px;
+
+        .header p {
+            font-size: 18px;
             opacity: 0.9;
         }
-        
-        .main-content {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .assignment-header {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
+
+        /* Instructions */
+        .instructions {
+            background: #fff8e7;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            border-left: 5px solid #004a8f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        
-        .subject-icon {
-            font-size: 60px;
-            color: #004a8f;
-            margin-bottom: 15px;
+
+        .instructions h3 {
+            color: #ff9800;
+            margin-bottom: 12px;
         }
-        
-        .assignment-header h2 {
-            color: #003366;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .assignment-details {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .detail-item {
-            background-color: #e8f4fc;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-        
-        .assignment-content {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-        
-        .assignment-content h3 {
-            color: #004a8f;
-            font-size: 24px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
-        }
-        
-        .assignment-content p {
+
+        .instructions ul {
+            margin-left: 25px;
             line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 16px;
         }
-        
-        .questions {
-            margin: 25px 0;
-        }
-        
-        .question-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            border-left: 4px solid #004a8f;
-        }
-        
-        .question-item strong {
-            color: #003366;
-        }
-        
-        .download-section {
-            text-align: center;
-            margin-top: 40px;
+
+        /* Question cards */
+        .question-card {
+            background: white;
+            border-radius: 16px;
             padding: 25px;
-            background-color: #e8f4fc;
-            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        
-        .download-btn {
-           background: linear-gradient(blue, aqua 0%, fuchsia 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 8px;
-            font-size: 18px;
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            font-size: 20px;
             font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
+            background: #008000;
+            color: white;
+            width: 40px;
+            height: 40px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            border-radius: 50%;
         }
-        
-        .download-btn:hover {
-            background: linear-gradient(to right, #218838, #1e7e34);
-            transform: scale(1.05);
+
+        .question-marks {
+            font-size: 16px;
+            font-weight: 600;
+            background: #f0f0f0;
+            padding: 6px 14px;
+            border-radius: 30px;
+            color: #2c3e50;
         }
-        
+
+        .question-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #2c3e50;
+            white-space: pre-line;
+        }
+
+        /* Answer area (optional, for students to write) */
+        .answer-area {
+            margin-top: 20px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .answer-area label {
+            font-weight: 600;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .answer-area textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            background: white;
+        }
+
         .footer {
             text-align: center;
-            padding: 30px;
-            background: linear-gradient(blue, aqua 0%, fuchsia 100%);
-            color: white;
-            margin-top: 50px;
-        }
-        
-        .footer p {
-            margin-bottom: 10px;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
             font-size: 14px;
         }
-        
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 12px;
             }
-            
-            .assignment-header h2 {
-                font-size: 26px;
+            .question-card {
+                padding: 18px;
             }
-            
-            .assignment-details {
-                flex-direction: column;
-                gap: 10px;
+            .question-number {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
             }
         }
+          .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+       
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border: 2px solid var(--secondary-color);
+        }
+         .logout-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttns {
+            position: absolute;
+            centre: 20px;
+            justify-content: center;
+            background-color: red;
+            color: lime;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+       
     </style>
-</head>
-<body>
-    <div class="header">
-         <div>
-      <img src="img/Ctemplogo.png" style="margin-bottom:15px; width: 400px; height: 120px" />
-    </div>
-        <button class="back-btn" onclick="goBack()">← Back to Subjects</button>
-        <div class="header-center">
-            <h1>Mathematics Assignment</h1>
-                <!--<img id="student-image" src="uploads/<?php echo $image; ?>" alt="Profile Picture">-->
-            <img id="userImage" style="width:120px; height:120px; border-radius:50%; border:3px solid #008000; display:block; margin:0 auto;"><br><br>
-            <p>Junior Secondary | Second Term 2025/2026</p>
-        </div>
-    </div>
-    
-    <div class="main-content">
-        <div class="assignment-header">
-            <!--<div class="subject-icon">➗</div>-->
-            <h2 id="subjectTitle">Mathematics Assignment</h2>
-            <div class="assignment-details">
-                <div class="detail-item">Class: Junior Secondary</div>
-                <div class="detail-item">Due Date: April 15, 2026</div>
-                <div class="detail-item">Total Marks: 50</div>
-            </div>
-        </div>
-        
-        <div class="assignment-content">
-            <h3>Assignment Instructions</h3>
-            <p>Complete all questions below. Show all your working clearly. </p>
-            <p>Use foolscap sheets or an A4 exercise book. Write your name, class, and  number on the front page.</p>
-            
-            <div class="questions">
-                <h3>Questions</h3>
-                
-                <div class="question-item">
-                    <strong>Question 1 (10 marks):</strong> Simplify the following algebraic expressions:
-                    <p>a) 3x + 5y - 2x + 3y</p>
-                    <p>b) 2(3a - 4b) + 5(a + 2b)</p>
-                    <p>c) (x² + 3x - 4) + (2x² - 5x + 6)</p>
-                </div>
-                
-                <div class="question-item">
-                    <strong>Question 2 (15 marks):</strong> Solve the following equations:
-                    <p>a) 2x + 7 = 15</p>
-                    <p>b) 3(y - 4) = 2y + 5</p>
-                    <p>c) (2z/3) - 5 = 1</p>
-                </div>
-                
-                <div class="question-item">
-                    <strong>Question 3 (10 marks):</strong> Geometry
-                    <p>Calculate the perimeter and area of a rectangle with length 12cm and width 8cm.</p>
-                    <p>Calculate the area of a triangle with base 10cm and height 6cm.</p>
-                </div>
-                
-                <div class="question-item">
-                    <strong>Question 4 (15 marks):</strong> Word Problems
-                    <p>a) If 5 books cost ₦1,250, how much would 8 books cost?</p>
-                    <p>b) A father is three times as old as his son. If the sum of their ages is 60 years, find their ages.</p>
-                    <p>c) Share ₦4,500 in the ratio 2:3:4 between three people.</p>
-                </div>
-            </div>
-            
-            <h3>Marking Scheme</h3>
-            <p>1 mark will be awarded for each correct step in the working. Final answers without working will receive half marks only.</p>
-        </div>
-        
-        <div class="download-section">
-            <h3>Download Assignment</h3>
-            <p>Click the button below to download a printable version of this assignment.</p>
-            <button class="download-btn" onclick="downloadAssignment()">📥 Download Assignment PDF</button>
-            <p style="margin-top: 15px; font-size: 14px; color: #666;">File size: 2.1 MB | Format: PDF</p>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 Canaanland model School, Ekute, Ado Ekiti</p>
-        <p>God is our strength</p>
-        <p>...</p>
-    </div>
 
     <script>
-        window.onload = function() {
-            // Check if user came from password protected page
-            const currentSubject = sessionStorage.getItem('currentSubject');
-            if (currentSubject) {
-                document.getElementById('subjectTitle').textContent = currentSubject + ' Assignment';
-            }
-        };
-        
-        function goBack() {
-            window.history.back();
-        }
-        
-        function downloadAssignment() {
-            alert('Assignment download started. If download doesn\'t begin, check your browser settings.');
-            // In a real implementation, this would link to an actual PDF file
-            // window.open('assignments/mathematics.pdf', '_blank');
-        }
-        //document.getElementById('user').innerText = sessionStorage.getItem('username');
-        document.getElementById('userImage').src = sessionStorage.getItem('image');
-        
-        // Auto-save when leaving page
-        window.addEventListener('beforeunload', function() {
-            sessionStorage.setItem('assignmentLastViewed', new Date().toISOString());
+        const staticTheoryQuestions = [
+            {
+      "id": 1,
+      
+      "question": "What is the place value of 7 in the number 3 724?",
+ 
+      "marks": 10,                
+      "image": null
+    },
+    {
+      "id": 2,
+      
+      "question": "Simplify: 12 + 3 × 4 – 2",
+
+      "marks": 10,               
+      "image": null
+    },
+    {
+      "id": 3,
+      
+      "question": "Which of the following is a prime number?",
+   
+      "marks": 10,               
+      "image": null
+    },
+    {
+      "id": 4,
+      
+      "question": "Convert 3/5 to a decimal.",
+    
+      "marks": 10,                
+      "image": null
+    },
+    {
+      "id": 5,
+      
+      "question": "The perimeter of a rectangle of length 8 cm and width 5 cm is:",
+ 
+      "marks": 10,                
+      "image": null
+    },
+    {
+      "id": 6,
+     
+      "question": "Write 2 3/4 as an improper fraction.",
+      "marks": 10,                
+      "image": null
+    },
+    {
+      "id": 7,
+    
+      "question": "Find the LCM of 6 and 8.",
+      "marks": 10,                
+      "image": null
+    },
+    {
+      "id": 8,
+     
+      "question": "Simplify: 5a + 3b – 2a + b",
+      "marks": 10,               
+      "image": null
+    },
+    {
+      "id": 9,
+      
+      "question": "If 3x + 4 = 19, find the value of x.",
+      "marks": 10,                
+      "image": null
+    },
+    {
+      "id": 10,
+      
+      "question": "A bag contains 3 red balls, 5 blue balls and 2 green balls. What is the probability of picking:\n(a) a red ball?\n(b) a blue ball?\n(c) a green ball?\n(d) a yellow ball?",
+      "marks": 10,               
+      "image": null
+    },
+    {
+      "id": 11,
+      
+      "question": "The ages of 6 students are: 12, 14, 13, 12, 15, 14.\n(a) Find the mean age.\n(b) Find the median age.\n(c) Find the mode.",
+      "marks": 10,               
+      "image": null
+    },
+    {
+      "id": 12,
+     
+      "question": "A rectangular plot measures 15 m by 12 m. Calculate:\n(a) Its area\n(b) Its perimeter\n(c) The cost of fencing the plot at ₦250 per metre.",
+      "marks": 10,               
+      "image": null
+    }
+  
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        staticTheoryQuestions.forEach(q => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            // Header with number and marks
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'question-header';
+
+            const numberSpan = document.createElement('span');
+            numberSpan.className = 'question-number';
+            numberSpan.textContent = q.id;
+
+            const marksSpan = document.createElement('span');
+            marksSpan.className = 'question-marks';
+            marksSpan.textContent = `${q.marks} Marks`;
+
+            headerDiv.appendChild(numberSpan);
+            headerDiv.appendChild(marksSpan);
+
+            // Question text (preserve line breaks)
+            const questionTextDiv = document.createElement('div');
+            questionTextDiv.className = 'question-text';
+            // Replace newlines with <br> tags for proper display
+            const formattedText = q.question.replace(/\n/g, '<br>');
+            questionTextDiv.innerHTML = formattedText;
+
+            // Optional answer area (students can type directly, but not required)
+            const answerArea = document.createElement('div');
+            answerArea.className = 'answer-area';
+            answerArea.innerHTML = `
+                <label>📝 Your Answer (optional – use this space to draft):</label>
+                <textarea rows="4" placeholder="Write your answer here..."></textarea>
+            `;
+
+            card.appendChild(headerDiv);
+            card.appendChild(questionTextDiv);
+            card.appendChild(answerArea);
+            container.appendChild(card);
         });
     </script>
 </body>
