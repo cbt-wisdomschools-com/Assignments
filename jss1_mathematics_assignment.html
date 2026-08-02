@@ -3,14 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSS1 MATHEMATICS Assignment | Wisdom Foundation Schools</title>
+    <link rel="icon" type="image/x-icon" href="fav_icon2.ico">
+    <title>cbt.wisdom foundationschools.org </title>
+    <script>
+        // Disable back navigation
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+
+        let backClickCount = 0;
+        let allowBack = false;
+
+        history.pushState(null, null, location.href);
+
+        window.onpopstate = function () {
+            if (!allowBack) {
+                backClickCount++;
+
+                if (backClickCount >= 50) {
+                    allowBack = true;
+                    alert("You have tried 50 times. Going back now...");
+                    history.back();
+                    return;
+                }
+
+                showBackModal();
+            }
+        };
+
+        function showBackModal() {
+            document.getElementById("backModalOverlay").style.display = "flex";
+            document.getElementById("passwordContainer").style.display = "none";
+            document.getElementById("backPassword").value = "";
+           
+            document.getElementById("modalButtons").innerHTML = `
+                <button onclick="handleYes()" style="padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: limegreen; color: white; font-size: 16px; cursor: pointer;">Yes</button>
+                <button onclick="closeBackModal()" style="padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: crimson; color: white; font-size: 16px; cursor: pointer;">No</button>
+            `;
+        }
+
+        function closeBackModal() {
+            document.getElementById("backModalOverlay").style.display = "none";
+            history.pushState(null, null, location.href);
+        }
+
+        function handleYes() {
+            document.getElementById("passwordContainer").style.display = "block";
+            document.getElementById("modalButtons").innerHTML = `
+                <button onclick="checkPassword()" style="padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: limegreen; color: white; font-size: 16px; cursor: pointer;">Submit</button>
+                <button onclick="closeBackModal()" style="padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: crimson; color: white; font-size: 16px; cursor: pointer;">Cancel</button>
+            `;
+        }
+
+        function checkPassword() {
+            const correctPassword = "admin123";
+            const enteredPassword = document.getElementById("backPassword").value;
+
+            if (enteredPassword === correctPassword) {
+                allowBack = true;
+                document.getElementById("backModalOverlay").style.display = "none";
+                history.back();
+            } else {
+                alert("Incorrect password. Staying on this page.");
+                closeBackModal();
+            }
+        }
+    </script>
+</head>
+<body oncontextmenu="return false">
+    <!-- Back Modal -->
+    <div id="backModalOverlay" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); color: #fff; font-family: Arial, sans-serif; justify-content: center; align-items: center; flex-direction: column;">
+        <div id="backModal" style="background: #222; padding: 30px; border-radius: 10px; text-align: center; width: 90%; max-width: 400px;">
+            <p style="font-size: 18px; margin: 0 0 10px;">Do you really want to go back?</p>
+
+            <div id="passwordContainer" style="display: none;">
+                <p style="margin-top: 10px;">Enter password to go back:</p>
+                <input type="password" id="backPassword" placeholder="Enter password"
+                    style="padding: 10px; width: 80%; margin-top: 10px; border-radius: 5px; border: none; font-size: 16px;">
+            </div>
+
+            <div id="modalButtons" style="margin-top: 20px;">
+                <button onclick="handleYes()" style="padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: limegreen; color: white; font-size: 16px; cursor: pointer;">Yes</button>
+                <button onclick="closeBackModal()" style="padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: crimson; color: white; font-size: 16px; cursor: pointer;">No</button>
+            </div>
+        </div>
+    </div>
+
     <style>
-        
-          body {
+        body {
             position: relative;
             z-index: 1;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
         }
-       
         body::before {
             content: "";
             position: fixed;
@@ -23,382 +111,661 @@
             opacity: 0.1;
             z-index: 0;
             pointer-events: none;
-            background-color: white;
-            align-items: center;
-            text-align: center;
-              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
+        #logout-container {
+            text-align: right;
+            padding: 10px;
+            background: #2c3e50;
         }
-
-        /* Header */
-        .header {
-            background: linear-gradient(gold, orange, fuchsia);/*background: linear-gradient(135deg, #008000, #006400);*/
-            color: white;
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .header p {
+        #datetime {
+            color: gold;
             font-size: 18px;
-            opacity: 0.9;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
         }
-
-        /* Instructions */
-        .instructions {
-            background: #fff8e7;
-            border-left: 5px solid #ff9800;
+        #logout {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        #header {
             padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: linear-gradient(to right, orange, purple);
+            color: white;
+            border-bottom: 5px solid #ff9800;
         }
-
-        .instructions h3 {
-            color: #ff9800;
-            margin-bottom: 12px;
-        }
-
-        .instructions ul {
-            margin-left: 25px;
-            line-height: 1.6;
-        }
-
-        /* Question cards */
-        .question-card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .question-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .question-header {
+        #logo {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-        }
-
-        .question-number {
-            font-size: 20px;
-            font-weight: bold;
-            background: #008000;
-            color: white;
-            width: 40px;
-            height: 40px;
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .question-marks {
-            font-size: 16px;
-            font-weight: 600;
-            background: #f0f0f0;
-            padding: 6px 14px;
-            border-radius: 30px;
-            color: #2c3e50;
-        }
-
-        .question-text {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #2c3e50;
-            white-space: pre-line;
-        }
-
-        /* Answer area (optional, for students to write) */
-        .answer-area {
-            margin-top: 20px;
-            background: #fafafa;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-        }
-
-        .answer-area label {
-            font-weight: 600;
-            color: #555;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .answer-area textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+            position: relative;
+            padding: 20px 0;
+        }
+        #logo img:not(.logo-left img):not(.logo-right img) {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .logo-left {
+            flex: 0 0 auto;
+            z-index: 1;
+            margin-left: 20px;
+        }
+        .logo-right {
+            flex: 0 0 auto;
+            z-index: 1;
+            margin-right: 20px;
+        }
+        .logo-left img,
+        .logo-right img {
+            max-width: 100px;
+            height: auto;
+            display: block;
             border-radius: 8px;
-            font-family: monospace;
-            font-size: 14px;
-            resize: vertical;
-            background: white;
+            transition: transform 0.3s ease;
         }
-
-        .footer {
+        .logo-left img:hover,
+        .logo-right img:hover {
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) {
+            #logo {
+                flex-direction: column;
+                gap: 15px;
+                padding: 10px 0;
+            }
+            #logo img:not(.logo-left img):not(.logo-right img) {
+                position: static;
+                transform: none;
+                margin: 10px auto;
+            }
+            .logo-left, .logo-right {
+                margin: 5px 0;
+            }
+            .logo-left img,
+            .logo-right img {
+                max-width: 80px;
+            }
+        }
+        #student-info {
+            margin-top: 20px;
             text-align: center;
-            margin-top: 40px;
+        }
+        #student-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 10px;
+            border: 3px solid white;
+            background: #ddd;
+        }
+        #welcome-message {
+            color: #ffeb3b;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
             padding: 20px;
-            color: #777;
-            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        @media (max-width: 700px) {
-            body {
-                padding: 20px 12px;
-            }
-            .question-card {
-                padding: 18px;
-            }
-            .question-number {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-            }
+        #timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+            text-align: center;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #e74c3c;
         }
-          .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        #theorySection {
+            background: #fff9e6;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            width: 80%;
+            border: 2px solid #ff9800;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #theoryQuestionText {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 5px solid #ff9800;
+            font-family: Arial, sans-serif;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        #theoryAnswer {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 200px;
+            font-family: Arial, sans-serif;
             margin-bottom: 15px;
         }
-       
-        .logo {
-            width: 80px;
-            height: 80px;
-            background-color: white;
-            border-radius: 50%;
+        .theory-nav-buttons {
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin-right: 15px;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .theory-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: bold;
-            color: var(--primary-color);
-            border: 2px solid var(--secondary-color);
         }
-         .logout-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            background-color: crimson;
+        .theory-save-btn {
+            background-color: #28a745;
             color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
         }
-        .buttns {
-            position: absolute;
-            centre: 20px;
-            justify-content: center;
-            background-color: red;
-            color: lime;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
+        .theory-save-btn:hover {
+            background-color: #218838;
         }
-       
+        .theory-prev-btn, .theory-next-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .theory-prev-btn:hover, .theory-next-btn:hover {
+            background-color: #0069d9;
+        }
+        .theory-submit-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .theory-submit-btn:hover {
+            background-color: #c82333;
+        }
+        .theory-status {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        .windows-activate {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+            font-size: 14px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        .exam-info {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        .theory-image-container {
+            margin: 15px 0;
+            text-align: center;
+        }
+        .theory-image-wrapper {
+            display: inline-block;
+            max-width: 100%;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .theory-question-image {
+            max-width: 100%;
+            max-height: 300px;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+            background: #f0f0f0;
+            padding: 10px;
+        }
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 14px;
+            text-align: center;
+        }
+        sup, sub {
+            font-size: 0.75em;
+            line-height: 1;
+        }
+        sup { vertical-align: super; }
+        sub { vertical-align: sub; }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: rgb(150,125,150);
+            padding: 10px 0;
+        }
+        .marquee-text {
+            display: inline-block;
+            color: gold;
+            font-size: 24px;
+            font-weight: bold;
+            animation: marquee 10s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        .student-info {
+            text-align: center;
+            margin: 15px 0;
+        }
+        #userImage {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #008000;
+            display: block;
+            margin: 0 auto;
+        }
+        #username {
+            color: #ffeb3b;
+            margin: 10px 0;
+        }
+        .section-toggle {
+            display: none;
+        }
+        #objectivesSection {
+            display: none !important;
+        }
+        .question-number {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .question-content ul, .question-content ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        .question-content li {
+            margin-bottom: 8px;
+        }
+        .question-content br {
+            display: block;
+            margin: 5px 0;
+            content: "";
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-         <div class="logo-container">
-                    <img src="img/wisdom_logo1.png" alt="School Logo">
-                </div>
-                <button class="logout-btn" onclick="logout()">Logout</button>
-        <div class="header">
-            <h1>JSS1 Mathematics Assignment</h1>
-           
+<body oncontextmenu="return false">
+    <div id="header">
+        <div id="logout-container">
+            <button id="logout" onclick="logout()">Logout</button>
+            <div class="marquee-container">
+                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER</span>
+            </div>
+        </div>
+        <div id="logo">
+            <img src="img/wisdom_logo1.png" alt="image">
         </div>
 
-        <div class="instructions">
-            <h3>📘 Instructions</h3>
-            <ul>
-                <li>Answer all questions in your Physics notebook.</li>
-                <li>Each question carries <strong>10 marks</strong> unless stated otherwise.</li>
-                <li>Show all workings clearly; marks are awarded for method as well as final answer.</li>
-                <li>Diagrams where necessary should be neatly drawn and labelled.</li>
-                <li>Submit your assignment on or before the deadline given by your teacher.</li>
-            </ul>
+        <div id="student-info">
+            <center><strong>ATTENTION! CLICK ON SUBMIT BUTTON BEFORE YOUR TIME IS UP TO SAVE YOUR SCORE</strong></center>
+            <center><p id="datetime"></p></center>
+            <div id="welcome-message">
+                <label id="usernameDisplay"></label>
+            </div>
+            <div class="student-info">
+                <img id="userImage" src="img/default_user.jpg" alt="Student Image">
+                <h2 id="username">Student Name</h2>
+            </div>
+
+            <center><h3>WISDOM FOUNDATION SCHOOLS EGBEWA ADO EKITI</h3></center>
+            <center><h3>ASSIGNMENT FOR 2025/2026 ACADEMIC SESSION HOLIDAYS </h3></center>
+
+            <div class="exam-info">
+                Exam: <span id="examInfo" style="color: lime;">MATHEMATICS - JSS1 (ASSIGNMENT FOR 3RD TERM)</span>
+            </div>
+
+             <!-- <div id="timer"></div>-->
         </div>
+    </div>
 
-        <div id="questions-container"></div>
-        <div><button class="buttns" onclick="logout()">Back To Dashboard</button></div>
-
-        <div class="footer">
-            <p>&copy; Wisdom Foundation Schools – Mathematics Department</p>
-            <p style="margin-top: 8px;">"Excellence is not an act, but a habit."</p>
-
+    <!-- THEORY SECTION ONLY -->
+    <div id="theorySection">
+        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">MATHEMATICS HOLIDAY ASSIGNMENTS </h3>
+        <div class="theory-status" id="theoryStatus">
+            Question 1 of 3 | Saved: 0/3
         </div>
+        <div id="theoryQuestionContainer">
+            <div id="theoryQuestionText">Loading theory questions...</div>
+            <div id="theoryImageContainer"></div>
+            <textarea id="theoryAnswer" rows="8" placeholder="Write your detailed answer here..."></textarea>
+            <div class="theory-nav-buttons">
+                <button onclick="prevTheoryQuestion()" class="theory-btn theory-prev-btn">Previous</button>
+                <button onclick="saveTheoryAnswer()" class="theory-btn theory-save-btn">Save Answer</button>
+                <button onclick="nextTheoryQuestion()" class="theory-btn theory-next-btn">Next</button>
+                <!-- <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
+            </div>
+        </div>
+    </div>
 
+    <div class="marquee-container">
+        <span class="marquee-text">ASSIGNMENT FOR  3RD TERM  2025/2026 ACADEMIC SESSION HOLIDAYS </span>
+    </div>
+
+    <div class="windows-activate">
+        <p>&copy; cbt.<span style="color: red;">wisdom foundation</span><span style="color: green;">schools</span>.org</p>
     </div>
 
     <script>
+        // ================== THEORY QUESTIONS DATA ==================
         const staticTheoryQuestions = [
-        
             {
       "id": 1,
-      
-      "question": "What is the place value of 7 in the number 3 724?",
- 
-      "marks": 10,                
+      "question": "List and explain four types of triangles.",
+      "marks": 10,
       "image": null
     },
     {
       "id": 2,
-      
-      "question": "Simplify: 12 + 3 × 4 – 2",
-
-      "marks": 10,               
+      "question": "Find the angles through which the minute hand moves between the following times:\n(i) 6:20am to 6:35am\n(ii) 2:30pm to 3:00pm\n(iii) 5:15pm to 5:40pm\n(iv) 1:30pm to 2:30pm\n(v) 7:00am to 7:35am\n(vi) 9:45pm to 10:15pm",
+      "marks": 10,
       "image": null
     },
     {
       "id": 3,
-      
-      "question": "Which of the following is a prime number?",
-   
-      "marks": 10,               
+      "question": "In a tabular form, state the number of faces, edges and vertices of the following solid shapes:\n(i) sphere\n(ii) cylinder\n(iii) cone\n(iv) cube\n(v) cuboid",
+      "marks": 10,
       "image": null
     },
     {
       "id": 4,
-      
-      "question": "Convert 3/5 to a decimal.",
-    
-      "marks": 10,                
+      "question": "List five types of lines and state the properties of parallelogram.",
+      "marks": 10,
       "image": null
     },
     {
       "id": 5,
-      
-      "question": "The perimeter of a rectangle of length 8 cm and width 5 cm is:",
- 
-      "marks": 10,                
+      "question": "Solve the equation \u2154a + 1 = \u2153(1 + a)",
+      "marks": 10,
       "image": null
     },
     {
       "id": 6,
-     
-      "question": "Write 2 3/4 as an improper fraction.",
-      "marks": 10,                
-      "image": null
-    },
-    {
-      "id": 7,
-    
-      "question": "Find the LCM of 6 and 8.",
-      "marks": 10,                
-      "image": null
-    },
-    {
-      "id": 8,
-     
-      "question": "Simplify: 5a + 3b – 2a + b",
-      "marks": 10,               
-      "image": null
-    },
-    {
-      "id": 9,
-      
-      "question": "If 3x + 4 = 19, find the value of x.",
-      "marks": 10,                
-      "image": null
-    },
-    {
-      "id": 10,
-      
-      "question": "A bag contains 3 red balls, 5 blue balls and 2 green balls. What is the probability of picking:\n(a) a red ball?\n(b) a blue ball?\n(c) a green ball?\n(d) a yellow ball?",
-      "marks": 10,               
-      "image": null
-    },
-    {
-      "id": 11,
-      
-      "question": "The ages of 6 students are: 12, 14, 13, 12, 15, 14.\n(a) Find the mean age.\n(b) Find the median age.\n(c) Find the mode.",
-      "marks": 10,               
-      "image": null
-    },
-    {
-      "id": 12,
-     
-      "question": "A rectangular plot measures 15 m by 12 m. Calculate:\n(a) Its area\n(b) Its perimeter\n(c) The cost of fencing the plot at ₦250 per metre.",
-      "marks": 10,               
+      "question": "Simplify the following:\n(i) 8r + r \u2212 2r + 3r\n(ii) 5m \u2013 3m + 4m \u2013 2n\n(iii) 6m \u2013 9y \u2212 10y + 12y\n(iv) y + 3x + 8y + x",
+      "marks": 10,
       "image": null
     }
-  
         ];
+      // ================== APPLICATION VARIABLES ==================
+        let theoryQuestions = [];
+        let currentTheory = 0;
+        let theoryAnswers = [];
 
-        const container = document.getElementById('questions-container');
+        // ================== INITIALIZATION ==================
+        window.onload = function () {
+            const username = sessionStorage.getItem('username');
+            const image = sessionStorage.getItem('image');
 
-        staticTheoryQuestions.forEach(q => {
-            const card = document.createElement('div');
-            card.className = 'question-card';
+            if (!username) {
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('username').innerText = username;
+            }
+            document.getElementById('userImage').src = sessionStorage.getItem('image') || 'img/default_user.jpg';
 
-            // Header with number and marks
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'question-header';
+            // Load static theory questions
+            theoryQuestions = staticTheoryQuestions;
+            theoryAnswers = new Array(theoryQuestions.length).fill('');
 
-            const numberSpan = document.createElement('span');
-            numberSpan.className = 'question-number';
-            numberSpan.textContent = q.id;
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
 
-            const marksSpan = document.createElement('span');
-            marksSpan.className = 'question-marks';
-            marksSpan.textContent = `${q.marks} Marks`;
+            displayTheoryQuestion();
+            updateTheoryStatus();
+        };
 
-            headerDiv.appendChild(numberSpan);
-            headerDiv.appendChild(marksSpan);
+        // ================== TIMER ==================
+        let timeLeft = 60 * 90; // 1 minute for demo
+        const timerEl = document.getElementById('timer');
+        const timerInterval = setInterval(() => {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
 
-            // Question text (preserve line breaks)
-            const questionTextDiv = document.createElement('div');
-            questionTextDiv.className = 'question-text';
-            // Replace newlines with <br> tags for proper display
-            const formattedText = q.question.replace(/\n/g, '<br>');
-            questionTextDiv.innerHTML = formattedText;
+            let display = '';
+            if (hours > 0) {
+                display += `${hours} Hr:`;
+            }
+            if (minutes > 0 || hours > 0) {
+                display += `${minutes} Min: `;
+            }
+            display += `${seconds} Sec`;
 
-            // Optional answer area (students can type directly, but not required)
-            const answerArea = document.createElement('div');
-            answerArea.className = 'answer-area';
-            answerArea.innerHTML = `
-                <label>📝 Your Answer (optional – use this space to draft):</label>
-                <textarea rows="4" placeholder="Write your answer here..."></textarea>
+            timerEl.textContent = `Time Remaining: ${display}`;
+            timeLeft--;
+
+            if (timeLeft < 300) {
+                timerEl.style.color = 'red';
+                timerEl.style.animation = 'pulse 1s infinite';
+            }
+
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                alert("Time is up! You will be logged out automatically.");
+                submitTheoryExam();
+            }
+        }, 1000);
+
+        // ================== THEORY FUNCTIONS ==================
+        function displayTheoryQuestion() {
+            if (theoryQuestions.length === 0) {
+                document.getElementById('theoryQuestionText').innerHTML = "No theory questions available.";
+                return;
+            }
+
+            const tq = theoryQuestions[currentTheory];
+            
+            // Format the question with proper HTML
+            let formattedQuestion = tq.question;
+            // Replace newlines with <br> for proper display
+            formattedQuestion = formattedQuestion.replace(/\n/g, '<br>');
+            
+            // Add question number
+            const questionHTML = `
+                <div class="question-number">Question ${currentTheory + 1}${tq.marks ? ` (${tq.marks} marks)` : ''}</div>
+                <div class="question-content">${formattedQuestion}</div>
             `;
 
-            card.appendChild(headerDiv);
-            card.appendChild(questionTextDiv);
-            card.appendChild(answerArea);
-            container.appendChild(card);
-        });
+            document.getElementById('theoryQuestionText').innerHTML = questionHTML;
+            document.getElementById('theoryAnswer').value = theoryAnswers[currentTheory] || "";
 
-          function logout() {
-            const confirmLogout = confirm("Are you sure you want to logout.");
-            if (confirmLogout) {
+            const theoryImageContainer = document.getElementById('theoryImageContainer');
+            if (tq.image) {
+                theoryImageContainer.innerHTML = `
+                    <div class="theory-image-wrapper">
+                        <img src="${tq.image}" alt="Theory Question Diagram" class="theory-question-image">
+                        <div class="image-caption">${tq.imageCaption || 'Diagram for question'}</div>
+                    </div>
+                `;
+            } else {
+                theoryImageContainer.innerHTML = '';
+            }
+
+            updateTheoryStatus();
+        }
+
+        function updateTheoryStatus() {
+            const savedCount = theoryAnswers.filter(answer => answer && answer.trim() !== "").length;
+            document.getElementById("theoryStatus").innerHTML =
+                `<strong>Question ${currentTheory + 1} of ${theoryQuestions.length}</strong> | Saved: ${savedCount}/${theoryQuestions.length}`;
+        }
+
+        function saveTheoryAnswer() {
+            const answer = document.getElementById('theoryAnswer').value.trim();
+            theoryAnswers[currentTheory] = answer;
+            updateTheoryStatus();
+            // Show brief save confirmation
+            const statusEl = document.getElementById('theoryStatus');
+            const originalText = statusEl.innerHTML;
+            statusEl.innerHTML = originalText + ' ✅ Saved';
+            setTimeout(() => {
+                updateTheoryStatus();
+            }, 1500);
+        }
+
+        function nextTheoryQuestion() {
+            saveTheoryAnswer();
+            if (currentTheory < theoryQuestions.length - 1) {
+                currentTheory++;
+                displayTheoryQuestion();
+            } else {
+                alert("You've reached the last assignment question.");
+            }
+        }
+
+        function prevTheoryQuestion() {
+            saveTheoryAnswer();
+            if (currentTheory > 0) {
+                currentTheory--;
+                displayTheoryQuestion();
+            }
+        }
+
+        function submitTheoryExam() {
+            const savedCount = theoryAnswers.filter(answer => answer && answer.trim() !== "").length;
+            const totalQuestions = theoryQuestions.length;
+            
+            const confirmSubmit = confirm(
+                `📝 Assignment Submission Summary\n\n` +
+                `You have answered ${savedCount} out of ${totalQuestions} questions.\n` +
+                `${savedCount === totalQuestions ? '✅ All questions completed!' : '⚠️ You have unanswered questions.'}\n\n` +
+                `Are you sure you want to submit?`
+            );
+
+            if (confirmSubmit) {
+                clearInterval(timerInterval);
+                // Save final answers to localStorage
+                localStorage.setItem('theoryAnswers', JSON.stringify(theoryAnswers));
+                alert(`✅ Assignment submitted successfully!\nYou answered ${savedCount}/${totalQuestions} questions.`);
                 window.location.href = "index.html";
             }
         }
 
-        
+        // ================== DATE & TIME ==================
+        function updateDateTime() {
+            let now = new Date();
+            let day = now.getDate();
+            let month = now.toLocaleString('default', { month: 'long' });
+            let year = now.getFullYear();
+            let suffix = "th";
+
+            if (day === 1 || day === 21 || day === 31) suffix = "st";
+            else if (day === 2 || day === 22) suffix = "nd";
+            else if (day === 3 || day === 23) suffix = "rd";
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            let formattedDateTime = `${month} ${day}${suffix} ${year}, ${hours}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById("datetime").innerText = formattedDateTime;
+        }
+
+        // ================== KEYBOARD SHORTCUTS ==================
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                nextTheoryQuestion();
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                prevTheoryQuestion();
+            }
+
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault();
+                saveTheoryAnswer();
+            }
+        });
+
+        // ================== ANTI-CHEAT & LOGOUT ==================
+        document.addEventListener('keydown', function (event) {
+            const key = event.key.toLowerCase();
+            if (event.ctrlKey && (key === 'p' || key === 's')) {
+                event.preventDefault();
+                alert("Right-click and view source are disabled during examination.");
+                return false;
+            }
+        });
+
+        document.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+            alert("Right-click is disabled during examination.");
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                alert("Developer tools are disabled during examination.");
+            }
+        });
+
+        function logout() {
+            const confirmLogout = confirm("Are you sure you want to logout?");
+            if (confirmLogout) {
+                window.location.href = "index.html";
+            }
+        }
     </script>
 </body>
 </html>

@@ -250,12 +250,14 @@
             font-weight: bold;
             font-size: 18px;
             margin-bottom: 15px;
-            line-height: 1.6;
+            line-height: 1.8;
             padding: 15px;
             background-color: #fff;
             border-radius: 5px;
             border-left: 5px solid #ff9800;
             font-family: Arial, sans-serif;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         #theoryAnswer {
             width: 100%;
@@ -407,10 +409,35 @@
             margin: 10px 0;
         }
         .section-toggle {
-            display: none; /* Hidden since we only have theory */
+            display: none;
         }
         #objectivesSection {
-            display: none !important; /* Completely hide objectives */
+            display: none !important;
+        }
+        .question-number {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .question-content ul, .question-content ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        .question-content li {
+            margin-bottom: 8px;
+        }
+        .question-content br {
+            display: block;
+            margin: 5px 0;
+            content: "";
         }
     </style>
 </head>
@@ -419,7 +446,7 @@
         <div id="logout-container">
             <button id="logout" onclick="logout()">Logout</button>
             <div class="marquee-container">
-                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER</span>
+                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER 2026</span>
             </div>
         </div>
         <div id="logo">
@@ -441,28 +468,28 @@
             <center><h3>ASSIGNMENT FOR 2025/2026 ACADEMIC SESSION HOLIDAYS </h3></center>
 
             <div class="exam-info">
-                Exam: <span id="examInfo" style="color: lime;">FOOD AND NUTRITION  - JSS1 (ASSIGNMENT FOR 3RD TERM)</span>
+                Exam: <span id="examInfo" style="color: lime;">MATHEMATICS - JSS3 (ASSIGNMENT FOR 3RD TERM)</span>
             </div>
-
-             <!-- <div id="timer"></div>-->
+            <!--TIME FOR THE PAGE-->
+            <!--<div id="timer"></div>-->
         </div>
     </div>
 
     <!-- THEORY SECTION ONLY -->
     <div id="theorySection">
-        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">FOOD AND NUTRITION  HOLIDAY ASSIGNMENTS </h3>
+        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">MATHEMATICS HOLIDAY ASSIGNMENTS </h3>
         <div class="theory-status" id="theoryStatus">
             Question 1 of 3 | Saved: 0/3
         </div>
         <div id="theoryQuestionContainer">
-            <p id="theoryQuestionText">Loading theory questions...</p>
+            <div id="theoryQuestionText">Loading theory questions...</div>
             <div id="theoryImageContainer"></div>
             <textarea id="theoryAnswer" rows="8" placeholder="Write your detailed answer here..."></textarea>
             <div class="theory-nav-buttons">
                 <button onclick="prevTheoryQuestion()" class="theory-btn theory-prev-btn">Previous</button>
                 <button onclick="saveTheoryAnswer()" class="theory-btn theory-save-btn">Save Answer</button>
                 <button onclick="nextTheoryQuestion()" class="theory-btn theory-next-btn">Next</button>
-                 <!-- <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
+                <!--<button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
             </div>
         </div>
     </div>
@@ -478,39 +505,47 @@
     <script>
         // ================== THEORY QUESTIONS DATA ==================
         const staticTheoryQuestions = [
-            {
+             {
       "id": 1,
-      "question": "1a. Define the term \"Family\".\n1b. Mention and explain three types of family.",
+      "question": "(a) Make V the subject of the formula in the expression; 1\/f = 1\/u + 1\/v\n(b) Find the value of V, when u =20 and f =16",
       "marks": 10,
       "image": null
     },
     {
       "id": 2,
-      "question": "Explain the meaning of Home. State five importance of a home to the family.",
+      "question": "P is inversely proportional to the square root of T. If P =8 when T =25, find:\n(i) the formula connecting P and T\n(ii) P when T =100\n(iii) T when P =64",
       "marks": 10,
       "image": null
     },
     {
       "id": 3,
-      "question": "3a. What are Family Needs?\n3b. Distinguish between Family Needs and Family Wants, giving four examples of each.",
+      "question": "(a) In a certain school, the lesson periods for each subject is listed in table below:\n\nSubjects: English, Mathematics, Chemistry, Physics, History, French\nNumber of Lessons: 20, 14, 8, 18, 6, 6\n\nDraw a pie chart to illustrate the information. [Diagram: question3.png]\n\n(b) Find the mean, median and mode of the following data; 4, 1, 7, 4, 6, 5, 4, 9",
       "marks": 10,
-      "image": null
+      "image": "question3.png"
     },
     {
       "id": 4,
-      "question": "List and explain five factors that influence family goals and standards.",
+      "question": "(a) A bag contains 4 red, 3 blue and 5 green balls. One ball is picked from the bag. What is the probability that:\n(i) the ball is green\n(ii) the ball is red\n(iii) the ball is blue\n(iv) the ball is blue or red\n(v) the ball is red or green\n(vi) the ball is white\n\n(b) If the probability of rain falling today is 1\/5. What is the probability that the rain will not fall?",
       "marks": 10,
       "image": null
     },
     {
       "id": 5,
-      "question": "5a. Define Clothing.\n5b. Explain four reasons why clothing is important to an individual.\n5c. Mention three household crafts or articles that can be produced at home.",
+      "question": "(a) If the area of a rectangular table top is 125cm\u00b2 and the breadth is 10cm. Find the:\n(i) length\n(ii) perimeter\n\n(b) Find value of x in 3x + 4 + 2x = 49",
+      "marks": 10,
+      "image": null
+    },
+    {
+      "id": 6,
+      "question": "(a) The angle of elevation of the top of a building is 25\u00b0 from a point 80m away on a level ground. Calculate the height of the building to 2 sf.\n(b) The angles in a triangle are given as 2x\u00b0, 3x\u00b0 and 5x\u00b0. Find the value of x",
       "marks": 10,
       "image": null
     }
         ];
 
-    // ================== APPLICATION VARIABLES ==================
+        
+
+        // ================== APPLICATION VARIABLES ==================
         let theoryQuestions = [];
         let currentTheory = 0;
         let theoryAnswers = [];

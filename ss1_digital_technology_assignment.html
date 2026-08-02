@@ -250,12 +250,14 @@
             font-weight: bold;
             font-size: 18px;
             margin-bottom: 15px;
-            line-height: 1.6;
+            line-height: 1.8;
             padding: 15px;
             background-color: #fff;
             border-radius: 5px;
             border-left: 5px solid #ff9800;
             font-family: Arial, sans-serif;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         #theoryAnswer {
             width: 100%;
@@ -407,10 +409,35 @@
             margin: 10px 0;
         }
         .section-toggle {
-            display: none; /* Hidden since we only have theory */
+            display: none;
         }
         #objectivesSection {
-            display: none !important; /* Completely hide objectives */
+            display: none !important;
+        }
+        .question-number {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .question-content ul, .question-content ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        .question-content li {
+            margin-bottom: 8px;
+        }
+        .question-content br {
+            display: block;
+            margin: 5px 0;
+            content: "";
         }
     </style>
 </head>
@@ -419,7 +446,7 @@
         <div id="logout-container">
             <button id="logout" onclick="logout()">Logout</button>
             <div class="marquee-container">
-                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER</span>
+                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER 2026</span>
             </div>
         </div>
         <div id="logo">
@@ -441,28 +468,28 @@
             <center><h3>ASSIGNMENT FOR 2025/2026 ACADEMIC SESSION HOLIDAYS </h3></center>
 
             <div class="exam-info">
-                Exam: <span id="examInfo" style="color: lime;">FOOD AND NUTRITION  - JSS1 (ASSIGNMENT FOR 3RD TERM)</span>
+                Exam: <span id="examInfo" style="color: lime;">DIGITAL TECHNOLOGY - SS1 (ASSIGNMENT FOR 3RD TERM)</span>
             </div>
-
-             <!-- <div id="timer"></div>-->
+            <!--TIME FOR THE PAGE-->
+            <!--<div id="timer"></div>-->
         </div>
     </div>
 
     <!-- THEORY SECTION ONLY -->
     <div id="theorySection">
-        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">FOOD AND NUTRITION  HOLIDAY ASSIGNMENTS </h3>
+        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">DIGITAL TECHNOLOGY HOLIDAY ASSIGNMENTS </h3>
         <div class="theory-status" id="theoryStatus">
             Question 1 of 3 | Saved: 0/3
         </div>
         <div id="theoryQuestionContainer">
-            <p id="theoryQuestionText">Loading theory questions...</p>
+            <div id="theoryQuestionText">Loading theory questions...</div>
             <div id="theoryImageContainer"></div>
             <textarea id="theoryAnswer" rows="8" placeholder="Write your detailed answer here..."></textarea>
             <div class="theory-nav-buttons">
                 <button onclick="prevTheoryQuestion()" class="theory-btn theory-prev-btn">Previous</button>
                 <button onclick="saveTheoryAnswer()" class="theory-btn theory-save-btn">Save Answer</button>
                 <button onclick="nextTheoryQuestion()" class="theory-btn theory-next-btn">Next</button>
-                 <!-- <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
+                <!--<button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
             </div>
         </div>
     </div>
@@ -478,39 +505,29 @@
     <script>
         // ================== THEORY QUESTIONS DATA ==================
         const staticTheoryQuestions = [
-            {
-      "id": 1,
-      "question": "1a. Define the term \"Family\".\n1b. Mention and explain three types of family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 2,
-      "question": "Explain the meaning of Home. State five importance of a home to the family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 3,
-      "question": "3a. What are Family Needs?\n3b. Distinguish between Family Needs and Family Wants, giving four examples of each.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 4,
-      "question": "List and explain five factors that influence family goals and standards.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 5,
-      "question": "5a. Define Clothing.\n5b. Explain four reasons why clothing is important to an individual.\n5c. Mention three household crafts or articles that can be produced at home.",
-      "marks": 10,
-      "image": null
-    }
+             {
+        "id": 1,
+        "question": "(a) What did you understand by 'I.C.T' by Definition?\n(b) List 6 functions of Microsoft Word Environment\n(c) List 4 Examples of Operating System",
+        "marks": 10,
+        "image": null
+      },
+      {
+        "id": 2,
+        "question": "(a) What is Booting?\n(b) Give 10 keyboard shortcuts on Microsoft Word with meaning\n(c) List 3 Components of Window Desktop and Explain one",
+        "marks": 10,
+        "image": null
+      },
+      {
+        "id": 3,
+        "question": "(a) Explain what you understand by the following terms:\n(i) Broadcasting\n(ii) Telecommunication\n(iii) Warm Booting\n(iv) Word Processing\n(b) List 4 types of Information Communication Technology (I.C.T)",
+        "marks": 10,
+        "image": null
+      }
         ];
 
-    // ================== APPLICATION VARIABLES ==================
+        
+
+        // ================== APPLICATION VARIABLES ==================
         let theoryQuestions = [];
         let currentTheory = 0;
         let theoryAnswers = [];

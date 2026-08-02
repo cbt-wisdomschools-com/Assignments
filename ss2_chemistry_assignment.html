@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -441,16 +442,16 @@
             <center><h3>ASSIGNMENT FOR 2025/2026 ACADEMIC SESSION HOLIDAYS </h3></center>
 
             <div class="exam-info">
-                Exam: <span id="examInfo" style="color: lime;">FOOD AND NUTRITION  - JSS1 (ASSIGNMENT FOR 3RD TERM)</span>
+                Exam: <span id="examInfo" style="color: lime;">CHEMISTRY - SS1 (ASSIGNMENT FOR 3RD TERM)</span>
             </div>
 
-             <!-- <div id="timer"></div>-->
+            <div id="timer"></div>
         </div>
     </div>
 
     <!-- THEORY SECTION ONLY -->
     <div id="theorySection">
-        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">FOOD AND NUTRITION  HOLIDAY ASSIGNMENTS </h3>
+        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">CHEMISTRY HOLIDAY ASSIGNMENTS </h3>
         <div class="theory-status" id="theoryStatus">
             Question 1 of 3 | Saved: 0/3
         </div>
@@ -462,7 +463,7 @@
                 <button onclick="prevTheoryQuestion()" class="theory-btn theory-prev-btn">Previous</button>
                 <button onclick="saveTheoryAnswer()" class="theory-btn theory-save-btn">Save Answer</button>
                 <button onclick="nextTheoryQuestion()" class="theory-btn theory-next-btn">Next</button>
-                 <!-- <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
+                <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>
             </div>
         </div>
     </div>
@@ -479,38 +480,26 @@
         // ================== THEORY QUESTIONS DATA ==================
         const staticTheoryQuestions = [
             {
-      "id": 1,
-      "question": "1a. Define the term \"Family\".\n1b. Mention and explain three types of family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 2,
-      "question": "Explain the meaning of Home. State five importance of a home to the family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 3,
-      "question": "3a. What are Family Needs?\n3b. Distinguish between Family Needs and Family Wants, giving four examples of each.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 4,
-      "question": "List and explain five factors that influence family goals and standards.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 5,
-      "question": "5a. Define Clothing.\n5b. Explain four reasons why clothing is important to an individual.\n5c. Mention three household crafts or articles that can be produced at home.",
-      "marks": 10,
-      "image": null
-    }
+                "id": 1,
+                "question": "(CHEMISTRY) (a) Add 234 and 567. (b) Subtract 189 from 400. (c) Multiply 23 by 15.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 2,
+                "question": "(English) (a) Write a short paragraph about your best friend. (b) Underline the nouns in your paragraph. (c) Write the opposite of: tall, happy, fast.",
+                "marks": 10,
+                "image": null
+            },
+            {
+                "id": 3,
+                "question": "(Computer Studies) (a) List four parts of a computer. (b) What is the function of a monitor? (c) Name two input devices.",
+                "marks": 10,
+                "image": null
+            }
         ];
 
-    // ================== APPLICATION VARIABLES ==================
+        // ================== APPLICATION VARIABLES ==================
         let theoryQuestions = [];
         let currentTheory = 0;
         let theoryAnswers = [];
@@ -539,7 +528,7 @@
         };
 
         // ================== TIMER ==================
-        let timeLeft = 60 * 90; // 1 minute for demo
+        let timeLeft = 60 * 1; // 90 minutes in seconds
         const timerEl = document.getElementById('timer');
         const timerInterval = setInterval(() => {
             const hours = Math.floor(timeLeft / 3600);
@@ -573,24 +562,15 @@
         // ================== THEORY FUNCTIONS ==================
         function displayTheoryQuestion() {
             if (theoryQuestions.length === 0) {
-                document.getElementById('theoryQuestionText').innerHTML = "No theory questions available.";
+                document.getElementById('theoryQuestionText').innerText = "No theory questions available.";
                 return;
             }
 
             const tq = theoryQuestions[currentTheory];
-            
-            // Format the question with proper HTML
-            let formattedQuestion = tq.question;
-            // Replace newlines with <br> for proper display
-            formattedQuestion = formattedQuestion.replace(/\n/g, '<br>');
-            
-            // Add question number
-            const questionHTML = `
-                <div class="question-number">Question ${currentTheory + 1}${tq.marks ? ` (${tq.marks} marks)` : ''}</div>
-                <div class="question-content">${formattedQuestion}</div>
-            `;
 
-            document.getElementById('theoryQuestionText').innerHTML = questionHTML;
+            document.getElementById('theoryQuestionText').innerText = 
+                `${currentTheory + 1}. ${tq.question} ${tq.marks ? `[${tq.marks} marks]` : ''}`;
+
             document.getElementById('theoryAnswer').value = theoryAnswers[currentTheory] || "";
 
             const theoryImageContainer = document.getElementById('theoryImageContainer');
@@ -610,21 +590,15 @@
 
         function updateTheoryStatus() {
             const savedCount = theoryAnswers.filter(answer => answer && answer.trim() !== "").length;
-            document.getElementById("theoryStatus").innerHTML =
-                `<strong>Question ${currentTheory + 1} of ${theoryQuestions.length}</strong> | Saved: ${savedCount}/${theoryQuestions.length}`;
+            document.getElementById("theoryStatus").innerText =
+                `Question ${currentTheory + 1} of ${theoryQuestions.length} | Saved: ${savedCount}/${theoryQuestions.length}`;
         }
 
         function saveTheoryAnswer() {
             const answer = document.getElementById('theoryAnswer').value.trim();
             theoryAnswers[currentTheory] = answer;
             updateTheoryStatus();
-            // Show brief save confirmation
-            const statusEl = document.getElementById('theoryStatus');
-            const originalText = statusEl.innerHTML;
-            statusEl.innerHTML = originalText + ' ✅ Saved';
-            setTimeout(() => {
-                updateTheoryStatus();
-            }, 1500);
+            /*alert("Theory answer saved successfully!");*/
         }
 
         function nextTheoryQuestion() {
@@ -647,20 +621,15 @@
 
         function submitTheoryExam() {
             const savedCount = theoryAnswers.filter(answer => answer && answer.trim() !== "").length;
-            const totalQuestions = theoryQuestions.length;
-            
             const confirmSubmit = confirm(
-                `📝 Assignment Submission Summary\n\n` +
-                `You have answered ${savedCount} out of ${totalQuestions} questions.\n` +
-                `${savedCount === totalQuestions ? '✅ All questions completed!' : '⚠️ You have unanswered questions.'}\n\n` +
-                `Are you sure you want to submit?`
+                `Assignment section completed!\n\n` +
+                /*`You have taken ${savedCount} out of ${theoryQuestions.length} theory questions.\n\n` +
+                `Logout?`*/
             );
 
             if (confirmSubmit) {
                 clearInterval(timerInterval);
-                // Save final answers to localStorage
-                localStorage.setItem('theoryAnswers', JSON.stringify(theoryAnswers));
-                alert(`✅ Assignment submitted successfully!\nYou answered ${savedCount}/${totalQuestions} questions.`);
+                alert("logging out successfully!");
                 window.location.href = "index.html";
             }
         }
@@ -692,10 +661,8 @@
         // ================== KEYBOARD SHORTCUTS ==================
         document.addEventListener('keydown', function (event) {
             if (event.key === 'ArrowRight') {
-                event.preventDefault();
                 nextTheoryQuestion();
             } else if (event.key === 'ArrowLeft') {
-                event.preventDefault();
                 prevTheoryQuestion();
             }
 

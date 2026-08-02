@@ -441,16 +441,16 @@
             <center><h3>ASSIGNMENT FOR 2025/2026 ACADEMIC SESSION HOLIDAYS </h3></center>
 
             <div class="exam-info">
-                Exam: <span id="examInfo" style="color: lime;">FOOD AND NUTRITION  - JSS1 (ASSIGNMENT FOR 3RD TERM)</span>
+                Exam: <span id="examInfo" style="color: lime;">FRENCH - JSS2 (ASSIGNMENT FOR 3RD TERM)</span>
             </div>
 
-             <!-- <div id="timer"></div>-->
+            <!--  <div id="timer"></div>-->
         </div>
     </div>
 
     <!-- THEORY SECTION ONLY -->
     <div id="theorySection">
-        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">FOOD AND NUTRITION  HOLIDAY ASSIGNMENTS </h3>
+        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">FRENCH HOLIDAY ASSIGNMENTS </h3>
         <div class="theory-status" id="theoryStatus">
             Question 1 of 3 | Saved: 0/3
         </div>
@@ -462,7 +462,7 @@
                 <button onclick="prevTheoryQuestion()" class="theory-btn theory-prev-btn">Previous</button>
                 <button onclick="saveTheoryAnswer()" class="theory-btn theory-save-btn">Save Answer</button>
                 <button onclick="nextTheoryQuestion()" class="theory-btn theory-next-btn">Next</button>
-                 <!-- <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
+                <!--  <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
             </div>
         </div>
     </div>
@@ -478,39 +478,41 @@
     <script>
         // ================== THEORY QUESTIONS DATA ==================
         const staticTheoryQuestions = [
-            {
-      "id": 1,
-      "question": "1a. Define the term \"Family\".\n1b. Mention and explain three types of family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 2,
-      "question": "Explain the meaning of Home. State five importance of a home to the family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 3,
-      "question": "3a. What are Family Needs?\n3b. Distinguish between Family Needs and Family Wants, giving four examples of each.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 4,
-      "question": "List and explain five factors that influence family goals and standards.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 5,
-      "question": "5a. Define Clothing.\n5b. Explain four reasons why clothing is important to an individual.\n5c. Mention three household crafts or articles that can be produced at home.",
-      "marks": 10,
-      "image": null
-    }
+             {
+        "id": 1,
+        "question": "(a) Écrivez trois (3) importances du sport en français.\n\n(b) Écrivez deux (2) avantages du sport en français.",
+        "marks": 10,
+        "image": null
+      },
+      {
+        "id": 2,
+        "question": "Nommez dix (10) sports en français.",
+        "marks": 10,
+        "image": null
+      },
+      {
+        "id": 3,
+        "question": "(a) Écrivez cinq (5) équipements du sport en français.\n\n(b) Mettez les ustensiles correctement:\n(i) On boit de l'eau avec ……………………………..\n(ii) On coupe le pain avec ………………………………\n(iii) On mange le repas avec …………………………………..\n(iv) On prépare le repas avec ………………………………….\n(v) On pile l'igname avec ………………………………….",
+        "marks": 10,
+        "image": null
+      },
+      {
+        "id": 4,
+        "question": "(a) Conjuguez le verbe 'Prendre'.\n\n(b) Traduisez les mots en anglais:\n(i) Au dîner, je bois du vin rouge. →\n(ii) Au déjeuner, je prends du riz santé →\n(iii) Au petit déjeuner, je mange du thé et du pain →\n(iv) Kunle mange du riz frit et du jus de fruits →",
+        "marks": 10,
+        "image": null
+      },
+      {
+        "id": 5,
+        "question": "(a) Conjuguez le verbe 'Boire'.\n\n(b) Traduisez les mots en anglais:\n(i) Je crains mon professeur →\n(ii) J'ai peur de mon père →\n(iii) Mon ami craint sa mère →\n(iv) Que Dieu vous bénisse →",
+        "marks": 10,
+        "image": null
+      }
         ];
 
-    // ================== APPLICATION VARIABLES ==================
+
+
+        // ================== APPLICATION VARIABLES ==================
         let theoryQuestions = [];
         let currentTheory = 0;
         let theoryAnswers = [];

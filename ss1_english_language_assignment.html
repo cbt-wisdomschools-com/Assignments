@@ -250,12 +250,14 @@
             font-weight: bold;
             font-size: 18px;
             margin-bottom: 15px;
-            line-height: 1.6;
+            line-height: 1.8;
             padding: 15px;
             background-color: #fff;
             border-radius: 5px;
             border-left: 5px solid #ff9800;
             font-family: Arial, sans-serif;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         #theoryAnswer {
             width: 100%;
@@ -407,10 +409,35 @@
             margin: 10px 0;
         }
         .section-toggle {
-            display: none; /* Hidden since we only have theory */
+            display: none;
         }
         #objectivesSection {
-            display: none !important; /* Completely hide objectives */
+            display: none !important;
+        }
+        .question-number {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .question-content ul, .question-content ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        .question-content li {
+            margin-bottom: 8px;
+        }
+        .question-content br {
+            display: block;
+            margin: 5px 0;
+            content: "";
         }
     </style>
 </head>
@@ -419,7 +446,7 @@
         <div id="logout-container">
             <button id="logout" onclick="logout()">Logout</button>
             <div class="marquee-container">
-                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER</span>
+                <span class="marquee-text">WISDOM FOUNDATION SCHOOLS : GATEWAY TO THE UNIVERSITY FOR YOUR CHILD ADMISSION FOR 2026/2027 ACADEMIC SESSION IN PROGRESS AND RESUMPTION BEGINS BY SEPTEMBER 2026</span>
             </div>
         </div>
         <div id="logo">
@@ -441,28 +468,28 @@
             <center><h3>ASSIGNMENT FOR 2025/2026 ACADEMIC SESSION HOLIDAYS </h3></center>
 
             <div class="exam-info">
-                Exam: <span id="examInfo" style="color: lime;">FOOD AND NUTRITION  - JSS1 (ASSIGNMENT FOR 3RD TERM)</span>
+                Exam: <span id="examInfo" style="color: lime;">ENGLISH LANGUAGE  - SS1 (ASSIGNMENT FOR 3RD TERM)</span>
             </div>
-
-             <!-- <div id="timer"></div>-->
+            <!--TIME FOR THE PAGE-->
+            <!--<div id="timer"></div>-->
         </div>
     </div>
 
     <!-- THEORY SECTION ONLY -->
     <div id="theorySection">
-        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">FOOD AND NUTRITION  HOLIDAY ASSIGNMENTS </h3>
+        <h3 style="text-align: center; color: #d35400; margin-bottom: 20px;">ENGLISH LANGUAGE  HOLIDAY ASSIGNMENTS </h3>
         <div class="theory-status" id="theoryStatus">
             Question 1 of 3 | Saved: 0/3
         </div>
         <div id="theoryQuestionContainer">
-            <p id="theoryQuestionText">Loading theory questions...</p>
+            <div id="theoryQuestionText">Loading theory questions...</div>
             <div id="theoryImageContainer"></div>
             <textarea id="theoryAnswer" rows="8" placeholder="Write your detailed answer here..."></textarea>
             <div class="theory-nav-buttons">
                 <button onclick="prevTheoryQuestion()" class="theory-btn theory-prev-btn">Previous</button>
                 <button onclick="saveTheoryAnswer()" class="theory-btn theory-save-btn">Save Answer</button>
                 <button onclick="nextTheoryQuestion()" class="theory-btn theory-next-btn">Next</button>
-                 <!-- <button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
+                <!--<button onclick="submitTheoryExam()" class="theory-btn theory-submit-btn">Submit Theory</button>-->
             </div>
         </div>
     </div>
@@ -477,40 +504,55 @@
 
     <script>
         // ================== THEORY QUESTIONS DATA ==================
-        const staticTheoryQuestions = [
-            {
-      "id": 1,
-      "question": "1a. Define the term \"Family\".\n1b. Mention and explain three types of family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 2,
-      "question": "Explain the meaning of Home. State five importance of a home to the family.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 3,
-      "question": "3a. What are Family Needs?\n3b. Distinguish between Family Needs and Family Wants, giving four examples of each.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 4,
-      "question": "List and explain five factors that influence family goals and standards.",
-      "marks": 10,
-      "image": null
-    },
-    {
-      "id": 5,
-      "question": "5a. Define Clothing.\n5b. Explain four reasons why clothing is important to an individual.\n5c. Mention three household crafts or articles that can be produced at home.",
-      "marks": 10,
-      "image": null
-    }
-        ];
+       const staticTheoryQuestions = [
+     {
+    "id": 1,
+    "question": "Write a story that ends with the statement: I was mistaken to have thought the night would be like other peaceful nights.",
+    "marks": 10,
+    "image": null
+  },
+  {
+    "id": 2,
+    "question": "The Old Students' Association of your school has just erected an ultra-modern hall for the school. As the senior prefect, write a letter to the chairman, thanking him for this project and pointing out three other areas in which the school needs assistance.",
+    "marks": 10,
+    "image": null
+  },
+  {
+    "id": 3,
+    "question": "Several demonstrations have been organised in the past few months in your country. Write an article for publication in one of your national newspapers, discussing the causes of these demonstrations and proposing three ways by which the government could deal with them.",
+    "marks": 10,
+    "image": null
+  },
+  {
+    "id": 4,
+    "question": "You are the principal speaker in a debate on the motion: Living in one's country is more advantageous than living abroad. Write your argument for or against the motion.",
+    "marks": 10,
+    "image": null
+  },
+  {
+    "id": 5,
+    "question": "Your friend wrote a letter to you and part of it reads: 'I think I am going to fail my forthcoming examinations! I don't know what to do.' Write a letter of encouragement to your friend, discussing at least three things he or she can do to manage examination jitters.",
+    "marks": 10,
+    "image": null
+  },
+  {
+    "id": 6,
+    "question": "Read the following passage carefully and answer the questions on it. You are advised to spend about 30 minutes on this section.\n\nPassage:\nI got home late on the day of the party. Although I had planned to be home early, the heavy traffic scuttled my plan. The party was in full swing by the time I arrived, with our street lined up with cars. I entered the compound and stood for several minutes, watching the scene before me with awe. My wife had spared no expenses in organising the party. \n\nI watched my son beam with delight. He made me proud and was now getting his reward. My plan had worked. I hadn't believed it would do the trick but I knew I just had to motivate him to do better than being content with the tenth position every term for the past two years. I knew he could be the best in his class, but he was just not trying hard enough. His lack of push was a weight on my shoulders and it was clear he needed an incentive. So, when he approached me with his yearly demand for a party, an idea occurred to me. I had always declined his request for an elaborate celebration. It was not for lack of money; I just never believed in living ostentatiously. Maybe my austere background had something to do with it. After all, as a manager of a reputable bank, I earned enough to make life comfortable for my family of four.\n\nMy plan to have a small family sprang from my desire to give my children the best in life. They were in one of the best schools and were always well-groomed. \n\nLooking at the children enjoying themselves took me down memory lane. I remember my days in school when I was at that age. Things were quite difficult for me while growing up. My parents were separated and my father had taken another wife who treated me with disdain. I worked like a grown-up man on my father's farm to get produce to sell so as to pay my school fees. My consolation those days was my strong belief that I would make it one day, after all, every cloud has a silver lining. \n\nAfter my secondary school education. I knew I had to get a job, as any hope of going further in my education was slim despite my good grades. I went to live with my uncle, who was accommodating and soon got me a job in a bank. Through hard work and after passing various professional examinations, I rose to the peak of my career. \n\nThe joyous shouts of the children roused me from my reminiscences, I realised that if I had not used my son's obsession with a party as a carrot for push, we wouldn't be celebrating his resounding success today. As soon as he knew the reward for coming first in his class, he worked hard like never before. He also surprised us by being the best student in all his subjects, even in Mathematics, which used to be his Achilles heel. \n\nThe plan was worth it, though I still lament the amount of money it gulped.\n\nQuestions:\n(a) What was the writer's plan for his son?\n(b) Why was the writer dissatisfied with his son's performance?\n(c) State two challenges that the writer faced while growing up.\n(d) What is the writer's attitude to life?\n(e) State two pieces of evidence that suggest that the writer's children were well cared for.\n(f) ...no expenses (i) What is the grammatical name given to this expression as it is used in the passage? (ii) What is its function?\n(g) His lack of push was a weight on my shoulders. What figure of speech is used in the expression above?\n(h) For each of the following words, find another word or phrase which means the same and which can replace it as it is used in the passage: (i) scuttled (ii) ostentatiously (iii) reputable (iv) sprang (v) well-groomed (vi) reminiscences",
+    "marks": 20,
+    "image": null
+  },
+  {
+    "id": 7,
+    "question": "Read the following passage carefully and answer the questions on it. You are advised to spend about 40 minutes on this section.\n\nPassage:\nThe campaign for the education of the girl-child appears to have achieved outstanding success. Many parents were once known to be indifferent to the education of the girl-child. But now, it is boys who appear to have become less serious with their studies. This calls for a determined effort to save the boy-child's education from further decline and avoid possible unpleasant consequences for both genders and the society.\n\nIt has been observed that more girls than boys now enrol for secondary and tertiary education than was the case forty years ago. Today, the population of boys and girls in classrooms is either equal or the girls outnumber the boys. The trend appears to be that after obtaining the first degree, they work to raise enough money to get married. On the other hand, their female counterparts often proceed to higher degrees while waiting to get married. This is one of the reasons why more females register for postgraduate programmes in various disciplines. \n\nIn addition, it appears that female students now perform better in academics than males. They are often more on the list of the best students in a class, just as more girls obtain first-class honours than boys in the universities. At a dinner for new dental surgeons in a prominent university, the guest lecturer asked the male students to stand up for recognition. Two men stood up; the other nineteen surgeons were female!\n\nMore girls seem to show greater commitment to education by staying to learn during school hours, unlike a good number of boys who absent themselves from school for all manner of reasons. They attend parties when lessons are on, and hide in various locations to commit cybercrime or engage in other nefarious activities. Therefore, boys have higher cases of truancy, resulting in a decline in their academic performance. \n\nCertain consequences may result from this present situation. Most top positions in public and private establishments might eventually be occupied by women who have the required academic qualifications. Companies and industrious are in constant patronage and will engage only the topmost brains with the necessary experience to occupy leadership positions. Thus, most female graduates and award-winners will qualify for these positions over men. \n\nThe effect will most likely be felt in homes where women are married to men who have lower academic qualifications. When rich senior school certificate holders are husbands of graduates or PhD holders, misunderstandings and conflicts are bound to occur. The wives are likely to view issues from a broader perspective, while their husbands may consider their opinions as confrontational. Peace and harmony may become elusive in such homes. \n\nNevertheless, the development so far should make women very proud. But with more women as managers and policymakers, the downside is that there may be instances when women will use their higher number in positions of authority to formulate policies that will favour them and possibly dominate the males.\n\nIn conclusion, while the campaign for the educational progress of women should be sustained, efforts should be intensified to arrest the current decline of interest of young men in education. Abundant benefits await society if there is a balance in the educational attainment of both genders.\n\nQuestions:\n(a) In three sentences, one for each, summarise three indicators of the decline in the education of males according to the passage.\n(b) In three sentences, one for each, summarise three likely consequences of the decline in the education of males according to the passage.",
+    "marks": 10,
+    "image": null
+  }
+];
+       
 
-    // ================== APPLICATION VARIABLES ==================
+        
+
+        // ================== APPLICATION VARIABLES ==================
         let theoryQuestions = [];
         let currentTheory = 0;
         let theoryAnswers = [];
